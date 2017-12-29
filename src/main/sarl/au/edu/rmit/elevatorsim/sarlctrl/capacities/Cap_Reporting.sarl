@@ -1,0 +1,84 @@
+/** 
+ * 
+ */
+package au.edu.rmit.elevatorsim.sarlctrl.capacities
+
+import au.edu.rmit.elevatorsim.Direction
+
+/** 
+ * Capacity for elevator agents to use to report actions they are taking and \
+ * events that are occurring
+ * @author Joshua Richards
+ */
+capacity Cap_Reporting {
+	/** 
+	 * Car(Agent) is taking action to travel to a floor
+	 * 
+	 * @param car car
+	 * @param floor target floor
+	 */
+	def reportTravellingTo(car : int, floor : int)
+	
+	/** 
+	 * Car has arrived at a floor 
+	 * 
+	 * @param car car
+	 * @param floor floor arrived at
+	 */
+
+	def reportArrivedAt(car : int, floor : int)
+	
+	/** 
+	 * Car has undocked from a floor 
+	 * 
+	 * @param car car
+	 * @param floor floor left
+	 */
+	def reportLeavingFrom(car : int, floor : int)
+	
+	/** 
+	 * Car has undocked from a floor 
+	 * 
+	 * @param car car
+	 * @param floor floor left
+	 * @param numPassengers number of passengers in the car
+	 */
+	def reportLeavingFrom(car : int, floor : int, numPassengers : int)
+	
+	/** 
+	 * Person has entered Car
+	 * 
+	 * @param car car
+	 */
+	def reportPersonEntered(car : int)
+	
+	/** 
+	 * Person has exited Car
+	 * 
+	 * @param car car
+	 */
+	def reportPersonExited(car : int)
+	
+	/** 
+	 * Person in building has requested service towards a direction
+	 * 
+	 * @param floor floor request came from
+	 * @param direction direction of travel
+	 */
+	def reportPersonRequestedService(floor : int, direction : Direction)
+	
+	/** 
+	 * Passenger has requested a floor to go to
+	 * 
+	 * @param car car
+	 * @param floor floor requested
+	 */
+	def reportPassengerRequestedFloor(car : int, floor : int)
+	
+	/** 
+	 * Report arbitrary message
+	 * 
+	 * @param message message
+	 */
+	def reportMessage(message : String)
+}

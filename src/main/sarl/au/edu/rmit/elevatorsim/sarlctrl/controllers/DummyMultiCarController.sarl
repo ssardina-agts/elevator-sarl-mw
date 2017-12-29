@@ -1,0 +1,107 @@
+/** 
+ * DummySingleCarController by Sebastian Sardina  
+ *  
+ * Dummy controller, goes up to the top and down to the bottom over and over - does nothing else.
+ * 
+ * Objective is to show how to connect and send a car to a floor
+ */
+package au.edu.rmit.elevatorsim.sarlctrl.controllers
+
+import io.sarl.core.DefaultContextInteractions
+import io.sarl.core.Initialize
+import au.edu.rmit.elevatorsim.Direction
+
+import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_Reporting
+import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_SimulatorInteraction
+
+import au.edu.rmit.elevatorsim.sarlctrl.skills.Skill_SingleSimulatorInteraction
+import au.edu.rmit.elevatorsim.sarlctrl.skills.Skill_ConsoleReporting
+
+import au.edu.rmit.elevatorsim.sarlctrl.events.CarArrivedPercept
+import au.edu.rmit.elevatorsim.sarlctrl.events.DoorClosedPercept
+import au.edu.rmit.elevatorsim.sarlctrl.events.ModelChangePercept
+import au.edu.rmit.elevatorsim.sarlctrl.events.SendCarAction
+
+
+/** 
+ * @author ssardina
+ */
+agent DummyMultiCarController {
+
+	uses DefaultContextInteractions, Cap_SimulatorInteraction, Cap_Reporting
+
+	// /////////////////////////////////////// BELIEFS ///////////////////////////////////////////
+	// Data-beliefs to keep track
+	var simulator_host = 'localhost'
+	var simulator_port = 8081
+
+	var car : int = 0 // no of passengers inside the car
+	var noCars : int = 0 // no of cars in the simulation
+	var lowestFloor : int // number of the lowest floor (e.g., 1)
+	var highestFloor : int // number of the highest floor in the building
+
+	var currentFloor : int = 1 // current floor the car is in
+	var moving : boolean = false // the car is currently moving
+
+
+
+
+	///////////////////////////////////////// REACTIVE BEHAVIORS NOW ///////////////////////////////////////////
+	on Initialize {
+		var params = occurrence.parameters
+
+		// Setup Console Reporting skill to report/talk behavior
+		setSkill(new Skill_ConsoleReporting(3), Cap_Reporting)
+
+		// Setup skill to control elevator simulator
+		// (includes connecting to simulator)
+		if (params.size == 2) {
+			simulator_host = params.get(0) as String
+			simulator_port = Integer.parseInt((params.get(1) as String))
+		}
+		setSkill(new Skill_SingleSimulatorInteraction(simulator_host, simulator_port, defaultSpace), Cap_SimulatorInteraction)
+		reportMessage("Successfully connected to elevator hardware at " + simulator_host + ":" + simulator_port);
+		act_connectToSimulator()
+	}
+
+	// setup model of simulation (once?)
+	on ModelChangePercept {
+		// Get the model for the floors
+		var floors = occurrence.model.floors
+		val cars = occurrence.model.cars
+		
+		// 1 - get floor bounds
+		lowestFloor = floors.get(0).id
+		highestFloor = floors.get(floors.size - 1).id
+		currentFloor = lowestFloor
+		noCars = cars.size
+		reportMessage("Elevator lowest floor is " + lowestFloor + "; and highest floor is " + highestFloor)
+
+		// OK start moving up to highest floor
+		for(var i = 0; i < noCars; i++){
+			sendCar(new SendCarAction(i, highestFloor, Direction.DOWN)) // this is the actual MOVEMENT action!
+			moving = true
+		}
+	}
+
+
+	on CarArrivedPercept {
+		reportArrivedAt(occurrence.car, occurrence.floor)
+		currentFloor = occurrence.floor
+		moving = false
+	}
+
+	on DoorClosedPercept {
+		// Now go to the other extreme....
+		if (currentFloor == highestFloor) {
+			sendCar(new SendCarAction(occurrence.car, lowestFloor, Direction.UP)) // this is the actual MOVEMENT action!
+			moving = true
+		} else if (currentFloor == lowestFloor) {
+			sendCar(new SendCarAction(occurrence.car, highestFloor, Direction.DOWN)) // this is the actual MOVEMENT action!
+			moving = true
+		} else {
+			moving = false			
+		}
+	}
+	
+}

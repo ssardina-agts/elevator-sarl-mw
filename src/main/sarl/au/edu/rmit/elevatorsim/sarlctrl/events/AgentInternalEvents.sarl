@@ -1,0 +1,23 @@
+package au.edu.rmit.elevatorsim.sarlctrl.events
+
+/** 
+ * A request from a floor for a car traveling in a direction 
+ * for a specified car
+ * Used to assign car requests to specific agents
+ * @author Joshua Beale
+ */
+event FilteredCarRequestPercept {
+	// Request to handle
+	var request : CarRequestPercept
+	// Assigned car
+	var car : Integer
+	/** 
+     * Constructor.
+	 * @param car Car to which request assigned
+	 * @param request Request to handle
+	 */
+	new(car : int, request : CarRequestPercept) {
+		this.car = car;
+		this.request = request;
+	}
+}

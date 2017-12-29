@@ -67,13 +67,14 @@ There are two methods to run the SARL Controller - through Eclipse or through th
 5. Click *Apply*!
 
 This needs to be set-up once. After that you can just run it by:
-1. Run the **SweeperBossAgent** run configuration we previously setup.
+
+1. Run the **DummyMultiCarController** run configuration we previously setup.
 2. Wait for the console to announce ```Launching the agent: au.edu.rmit.elevatorsim.sarlctrl.controllers.DummyMultiCarController```.
 
 
 #### Compiling and Running from the command line (CLI) ###
 
-The compilation is done via Maven (Maven � Maven Getting Started Guide http://tinyurl.com/y994z75j):
+The compilation is done via Maven (Maven Getting Started Guide http://tinyurl.com/y994z75j):
 
 1. Make sure ```pom.xml``` is correctly configured with either:
 	* sarl.version: 0.4.2 AND janus.version: 2.0.4.2

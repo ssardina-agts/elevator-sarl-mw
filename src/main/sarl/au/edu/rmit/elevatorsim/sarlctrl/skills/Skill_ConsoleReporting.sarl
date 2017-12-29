@@ -1,0 +1,85 @@
+/** 
+ * 
+ */
+package au.edu.rmit.elevatorsim.sarlctrl.skills
+
+import io.sarl.core.Logging
+import au.edu.rmit.elevatorsim.Direction
+
+import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_Reporting
+
+/** 
+ * Skill for console-based reporting of elevator actions
+ * Implementation of the Reporting capacity
+ * @author Joshua Beale
+ */
+skill Skill_ConsoleReporting implements Cap_Reporting {
+	uses Logging
+
+    // Reporting log level
+	val level : int
+
+	new (l : int) {
+		super() // Call the super's constructor
+    	level = l // TODO this should probably be done with the Logging Capacity level
+	}
+
+	new () {
+		super() // Call the super's constructor
+		level = 0
+	}
+
+	override reportTravellingTo(car : int, floor : int) {
+		if (level >= 0) {
+			info("Car " + car + ": We are DEPARTING for floor " + floor)
+		}
+	}
+
+	override reportArrivedAt(car : int, floor : int) {
+		info("Car " + car + ": We have ARRIVED at floor " + floor)
+	}
+
+	override reportLeavingFrom(car : int, floor : int, numPassengers : int) {
+		if (level >= 0) {
+			info("Car " + car + ": I'm closing the door at floor " + floor + " with " + numPassengers +
+				" people on board")
+		}
+	}
+
+	override reportLeavingFrom(car : int, floor : int) {
+		if (level >= 2) {
+			info("Car " + car + ": I'm closing the door at floor " + floor)
+		}
+	}
+
+	override reportPersonEntered(car : int) {
+		if (level >= 2) {
+			info("Car " + car + ": Someone entered")
+		}
+	}
+
+	override reportPersonExited(car : int) {
+		if (level >= 2) {
+			info("Car " + car + ": Someone exited")
+		}
+	}
+
+	override reportPassengerRequestedFloor(car : int, floor : int) {
+		if (level >= 2) {
+			info("Car " + car + ": Someone wants to get off in floor " + floor)
+		}
+	}
+	
+	override reportPersonRequestedService(floor : int, direction : Direction) {
+		if (level >= 1) {
+			info("Someone requested service at floor " + floor + " towards direction " + direction.name)
+		}
+	}
+
+	override reportMessage(message : String) {
+		if (level >= 3) {
+			info(message)
+		}
+	}
+
+}

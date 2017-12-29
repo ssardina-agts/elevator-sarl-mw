@@ -1,0 +1,165 @@
+package au.edu.rmit.elevatorsim.sarlctrl.events
+
+import au.edu.rmit.elevatorsim.Direction
+import au.edu.rmit.elevatorsim.net.ModelHolder
+
+/** 
+ * Collection of Percepts that convey ElevatorSim events to Agents
+ * @author Joshua Beale
+ */
+
+/** 
+ * Super event for all ElevatorSim Percepts
+ * @author Joshua Beale
+ */
+event ElevatorSimPercept {
+	var time : Long
+	var id : Integer
+
+	new(time : Long, id : Integer) {
+		this.time = time;
+		this.id = id;
+	}
+}
+
+/** 
+ * A change in the ElevatorSim model parameters
+ * @author Joshua Beale
+ */
+event ModelChangePercept extends ElevatorSimPercept {
+	var model : ModelHolder
+
+	new(time : Long, id : Integer, model : ModelHolder) {
+		super(time, id)
+		this.model = model;
+	}
+}
+
+/** 
+ * A request from a floor for a car traveling in a direction
+ * @author Joshua Beale
+ */
+event CarRequestPercept extends ElevatorSimPercept {
+	var floor : Integer
+	var direction : Direction
+
+	new(time : Long, id : Integer, floor : Integer, direction : String) {
+		super(time, id)
+		this.floor = floor;
+		this.direction = Direction.getDirection(direction);
+	}
+}
+
+/** 
+ * Super event for all events associated with a car
+ * @author Joshua Beale
+ */
+event CarPercept extends ElevatorSimPercept {
+	var car : Integer
+
+	new(time : Long, id : Integer, car : Integer) {
+		super(time, id)
+		this.car = car;
+	}
+}
+
+/** 
+ * A person entering a car
+ * @author Joshua Beale
+ */
+event PersonEnteredPercept extends CarPercept {
+
+	new(time : Long, id : Integer, car : Integer) {
+		super(time, id, car)
+	}
+}
+
+/** 
+ * A person exiting a car
+ * @author Joshua Beale
+ */
+event PersonExitedPercept extends CarPercept {
+
+	new(time : Long, id : Integer, car : Integer) {
+		super(time, id, car)
+	}
+}
+
+/** 
+ * Super event for all events associated with a car and a floor
+ * @author Joshua Beale
+ */
+event CarAtFloorPercept extends CarPercept {
+	var floor : Integer
+
+	new(time : Long, id : Integer, car : Integer, floor : Integer) {
+		super(time, id, car)
+		this.floor = floor;
+	}
+}
+
+/** 
+ * A car passing a floor
+ * @author Joshua Beale
+ */
+event CarPassedFloorPercept extends CarAtFloorPercept {
+
+	new(time : Long, id : Integer, car : Integer, floor : Integer) {
+		super(time, id, car, floor)
+	}
+}
+
+/** 
+ * A car arriving at a floor
+ * @author Joshua Beale
+ */
+event CarArrivedPercept extends CarAtFloorPercept {
+
+	new(time : Long, id : Integer, car : Integer, floor : Integer) {
+		super(time, id, car, floor)
+	}
+}
+
+/** 
+ * The doors of a car closing
+ * @author Joshua Beale
+ */
+event DoorClosedPercept extends CarAtFloorPercept {
+
+	new(time : Long, id : Integer, car : Integer, floor : Integer) {
+		super(time, id, car, floor)
+	}
+}
+
+/** 
+ * The doors of a car opening
+ * @author Joshua Beale
+ */
+event DoorOpenedPercept extends CarAtFloorPercept {
+
+	new(time : Long, id : Integer, car : Integer, floor : Integer) {
+		super(time, id, car, floor)
+	}
+}
+
+/** 
+ * The door sensor of a car being cleared
+ * @author Joshua Beale
+ */
+event DoorSensorClearedPercept extends CarAtFloorPercept {
+
+	new(time : Long, id : Integer, car : Integer, floor : Integer) {
+		super(time, id, car, floor)
+	}
+}
+
+/** 
+ * A floor being requested by a person in a car
+ * @author Joshua Beale
+ */
+event FloorRequestPercept extends CarAtFloorPercept {
+
+	new(time : Long, id : Integer, car : Integer, floor : Integer) {
+		super(time, id, car, floor)
+	}
+}

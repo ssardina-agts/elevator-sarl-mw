@@ -1,0 +1,74 @@
+/** 
+ * 
+ */
+package au.edu.rmit.elevatorsim.sarlctrl.skills
+
+import au.edu.rmit.elevatorsim.sarlctrl.events.SendCarAction
+import au.edu.rmit.elevatorsim.net.NetworkConnection
+import io.sarl.lang.core.EventSpace
+import java.io.IOException
+
+/**
+ * Allows for a shared elevator simulator connection amongst
+ * multiple agents (corresponding to multiple cars)
+ * @author Matthew McNally
+ */
+public class Skill_MultipleSimulatorInteraction 
+    extends Skill_SingleSimulatorInteraction
+{
+    // Singleton based network connection
+    private static var sharedConnection : NetworkConnection
+    // Cars which the agent that this skill has been assigned to
+    // is allowed to control
+    
+    // TODO: make this a set so that no repeated cars possible?
+    private val assignedCars : int[]
+    
+    public new(host : String, port : int, assignedCars : int[],
+        agentSpace : EventSpace) throws IOException
+    {
+		super(host, port, agentSpace)
+		this.assignedCars = assignedCars
+	}
+
+	override def act_connectToSimulator(address : String, port : int) {
+		this.host = host
+		this.port = port
+		act_connectToSimulator()
+	}
+
+	override def act_connectToSimulator() {
+		registerConnection(getSharedConnection(this.host, this.port))
+		this.start()
+	}
+    
+    private static def getSharedConnection(host : String,
+        port : int) : NetworkConnection
+    {
+        if (sharedConnection === null)
+        {
+            sharedConnection = new NetworkConnection(host, port)
+        }
+        
+        return sharedConnection
+    }
+
+    public override sendCar(action : SendCarAction)
+    {
+        if (assignedCars !== null) 
+        {
+            // check if this action is allowed
+            for (car : assignedCars)
+            {
+                if (car == action.car) 
+                {
+                    super.sendCar(action)
+                    // TODO: should this be changed to a break?
+                    return     // just in case a stupid agent creates this with multiple of the same carID
+                }
+            }
+        } else {
+            super.sendCar(action)
+        }
+    }
+}

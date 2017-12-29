@@ -1,0 +1,39 @@
+/**
+ * 
+ */
+package au.edu.rmit.elevatorsim.sarlctrl.events
+
+import au.edu.rmit.elevatorsim.Direction
+
+/**
+ * Series of action types which can be
+ * sent by elevator controller agents.
+ * @author Matthew McNally
+ */
+ 
+event ElevatorSimAction
+{
+    val cause : ElevatorSimPercept
+    
+    new(cause : ElevatorSimPercept = null)
+    {
+        this.cause = cause
+    }
+}
+
+event SendCarAction extends ElevatorSimAction
+{
+    val car : int
+    val floor : int
+    val nextDirection : Direction
+    
+    new(car : int, floor : int, nextDirection : Direction, 
+        cause : ElevatorSimPercept = null)
+    {
+        super(cause)
+        
+        this.car = car
+        this.floor = floor
+        this.nextDirection = nextDirection
+    } 
+}

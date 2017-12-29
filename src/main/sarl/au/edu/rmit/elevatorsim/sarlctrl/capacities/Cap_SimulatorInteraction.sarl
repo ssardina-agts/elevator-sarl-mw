@@ -1,0 +1,33 @@
+/**
+ * 
+ */
+package au.edu.rmit.elevatorsim.sarlctrl.capacities
+
+import au.edu.rmit.elevatorsim.sarlctrl.events.SendCarAction
+
+/**
+ * Allows for actions to be submitted to the
+ * Elevator Simulator for processing
+ * <p>
+ * Currently only supports sending a car
+ * to a specific floor
+ * @author Matthew McNally
+ */
+capacity Cap_SimulatorInteraction
+{
+	/** 
+	 * Dispatch a car to a given floor destination
+	 * @param a SendCarAction object containing car numbre, floor destination, and next direction (up/down)
+	 */
+	def sendCar(action : SendCarAction)
+
+
+	/** 
+     * Setup ElevatorSim interaction - connects to the RMIT Elevator Simulator server
+	 * @param address URL to connect to, defaults to localhost
+	 * @param port Port to connect on, defaults to 8081
+	 */
+	def act_connectToSimulator(address : String, port : int)
+	def act_connectToSimulator()
+
+}
