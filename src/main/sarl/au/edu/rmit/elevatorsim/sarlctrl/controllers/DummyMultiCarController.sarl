@@ -35,15 +35,12 @@ agent DummyMultiCarController {
 	var simulator_host = 'localhost'
 	var simulator_port = 8081
 
-	var car : int = 0 // no of passengers inside the car
 	var noCars : int = 0 // no of cars in the simulation
 	var lowestFloor : int // number of the lowest floor (e.g., 1)
 	var highestFloor : int // number of the highest floor in the building
 
 	var currentFloor : int = 1 // current floor the car is in
 	var moving : boolean = false // the car is currently moving
-
-
 
 
 	///////////////////////////////////////// REACTIVE BEHAVIORS NOW ///////////////////////////////////////////
