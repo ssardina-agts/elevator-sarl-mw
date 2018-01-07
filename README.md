@@ -270,6 +270,12 @@ your Maven dependencies and generally resolve any corrupted dependencies or fail
 	* Main page: <http://www.sarl.io/>
 	* github repo: <https://github.com/sarl/sarl>
 	* User forum: <https://groups.google.com/forum/?hl=en#!forum/sarl>
+* SWI Prolog:
+	* Main web page: <http://www.swi-prolog.org/>
+	* JPL module (bidirectional link SWI-Java) for SWI: 
+		* <http://www.swi-prolog.org/pldoc/doc_for?object=section(%27packages/jpl.html%27>
+		* <http://jpl7.org/740/PrologApiOverview.jsp>
+* Mochalog (higher abstraction than JPL for SWI Connectivity): <https://github.com/mochalog/mochalog>
 
 
 ## PROJECT LEADER & CONTACT ##
