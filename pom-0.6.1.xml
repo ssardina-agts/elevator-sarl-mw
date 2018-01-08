@@ -10,8 +10,19 @@
         <compiler.level>1.8</compiler.level>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+ 
+        	
     <build>
+	  <resources>
+	       <resource>
+	            <directory>src/main/sarl</directory>
+	            <filtering>false</filtering>
+	        </resource>
+	        <resource>
+	            <directory>src/main/java</directory>
+	            <filtering>false</filtering>
+	        </resource>
+	  </resources>
         <plugins>
             <plugin>
                 <groupId>io.sarl.maven</groupId>
