@@ -20,7 +20,9 @@ import au.edu.rmit.elevatorsim.net.ClientElevatorSimulator
 import au.edu.rmit.elevatorsim.net.ModelHolder
 import au.edu.rmit.elevatorsim.net.NetworkConnection
 
+import io.sarl.lang.SARLVersion
 import io.sarl.core.Logging
+import io.sarl.core.ExternalContextAccess
 import io.sarl.lang.core.EventSpace
 
 import java.io.IOException
@@ -33,11 +35,14 @@ import java.io.IOException
  * and allowing for the submission of actions
  * for processing by the Elevator Simulator
  * @author Matthew McNally
+ * @author Sebastian Sardina (ssardina@gmail.com)
  */
 skill Skill_SingleSimulatorInteraction extends ClientElevatorSimulator
     implements Cap_SimulatorInteraction
 {
     uses Logging
+	uses ExternalContextAccess // SARL compiler will uses the emit function from the capacity that calls the emit function (with 3 parameters) of the space for you.
+    
     
     private var agentSpace : EventSpace
 	protected var host : String
