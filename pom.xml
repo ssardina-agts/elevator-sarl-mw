@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bitbucket.sarlrmit</groupId>
 	<artifactId>sarl-elevatorsim-ctrl</artifactId>
-	<version>1.0.0</version>
+	<version>1.5.8</version>
     <properties>
         <janus.version>2.${sarl.version}</janus.version>
         <sarl.version>0.5.8</sarl.version>
