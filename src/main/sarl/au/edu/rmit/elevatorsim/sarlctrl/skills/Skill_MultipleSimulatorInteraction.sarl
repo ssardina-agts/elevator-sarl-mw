@@ -32,14 +32,14 @@ public class Skill_MultipleSimulatorInteraction
 	}
 
 
-	def act_connectToSimulator(address : String, port : int) {
+	def act_connectToSimulator(address : String, port : int) : void {
 		this.host = host
 		this.port = port
 		
 		act_connectToSimulator()
 	}
 
-	def act_connectToSimulator() {
+	def act_connectToSimulator() : void  {
 		if (sharedConnection === null) {
 			registerConnection(new NetworkConnection(this.host, this.port))
 		} else {
@@ -49,7 +49,7 @@ public class Skill_MultipleSimulatorInteraction
 		this.start()
 	}
     
-    def sendCar(action : SendCarAction) {
+    def sendCar(action : SendCarAction) : void {
         if (assignedCars !== null) 
         {
             // check if this action is allowed
