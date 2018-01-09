@@ -31,30 +31,25 @@ public class Skill_MultipleSimulatorInteraction
 		this.assignedCars = assignedCars
 	}
 
-	override def act_connectToSimulator(address : String, port : int) {
+
+	def act_connectToSimulator(address : String, port : int) {
 		this.host = host
 		this.port = port
+		
 		act_connectToSimulator()
 	}
 
-	override def act_connectToSimulator() {
-		registerConnection(getSharedConnection(this.host, this.port))
+	def act_connectToSimulator() {
+		if (sharedConnection === null) {
+			registerConnection(new NetworkConnection(this.host, this.port))
+		} else {
+			registerConnection(sharedConnection)
+		}
+		
 		this.start()
 	}
     
-    private static def getSharedConnection(host : String,
-        port : int) : NetworkConnection
-    {
-        if (sharedConnection === null)
-        {
-            sharedConnection = new NetworkConnection(host, port)
-        }
-        
-        return sharedConnection
-    }
-
-    public override sendCar(action : SendCarAction)
-    {
+    def sendCar(action : SendCarAction) {
         if (assignedCars !== null) 
         {
             // check if this action is allowed
