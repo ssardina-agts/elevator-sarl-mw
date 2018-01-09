@@ -11,7 +11,7 @@ import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_Reporting
 /** 
  * Skill for console-based reporting of elevator actions
  * Implementation of the Reporting capacity
- * @author Joshua Beale
+ * @author Sebastian Sardina
  */
 skill Skill_ConsoleReporting implements Cap_Reporting {
 	uses Logging

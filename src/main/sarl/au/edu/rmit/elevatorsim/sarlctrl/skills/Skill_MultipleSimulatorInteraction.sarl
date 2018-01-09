@@ -5,16 +5,17 @@ import au.edu.rmit.elevatorsim.net.NetworkConnection
 import io.sarl.lang.core.EventSpace
 import java.io.IOException
 
-import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_SimulatorInteraction
+//import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_SimulatorInteraction
 
 
 /**
  * Allows for a shared elevator simulator connection amongst
  * multiple agents (corresponding to multiple cars)
  * @author Matthew McNally
+ * @author Sebastian Sardina (ssardina@gmail.com)
  */
-class Skill_MultipleSimulatorInteraction 
-    extends Skill_SingleSimulatorInteraction implements Cap_SimulatorInteraction
+class Skill_MultipleSimulatorInteraction extends Skill_SingleSimulatorInteraction 
+//implements Cap_SimulatorInteraction
 { 
     // Singleton based network connection
     private static var sharedConnection : NetworkConnection

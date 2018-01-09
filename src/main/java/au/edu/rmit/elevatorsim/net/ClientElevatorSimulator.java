@@ -25,7 +25,6 @@ public abstract class ClientElevatorSimulator extends Skill implements
     Runnable, Capacity, NetworkConnection.Listener
 {
 	private NetworkConnection connection;
-	private boolean connection_registered = false;
 	
 	private int nextActionId = 0;
 	private Map<Integer, Runnable> successCallbacks = new HashMap<>();
@@ -50,7 +49,6 @@ public abstract class ClientElevatorSimulator extends Skill implements
 		if (connection != null) {
 			this.connection = connection;
 			this.connection.addListener(this);
-			connection_registered = true;
 		} 
 	}
 	
