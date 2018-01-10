@@ -1,9 +1,5 @@
 # SARL Elevator Simulator Connectivity & Controller (for Java-based Elevator Simulator) 
 
-[TOC]
-
-## Overview
-
 This project provides the basic infrastructure, through a capacity/skill, to develop agent-based controllers for the [Java Elevator Simulator (RMIT Version)](https://bitbucket.org/sarlrmit/elevator-sim) in the [SARL Language](https://github.com/sarl/sarl) agent framework. The project also a very basic SARL elevator agent-based controllers using such infrastructure. 
 
 The SARL infrastructure provided in this project can be used "off-the-shelf" to develop other more complex controllers. The infrastructure provides the core basic skills of a SARL agent to control an elevator simulator, by receiving sensor-events and issuing command-events to the simulator.  A very simple dummy agent is provided too.
