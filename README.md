@@ -15,7 +15,7 @@ This project was part of a team-based programming project course under the super
 * Maven project management and comprehension tool (to meet dependencies, compile, package, run).
 * [The Elevator Simulator Server (RMIT version)](https://bitbucket.org/sarlrmit/elevator-sim).
 * SARL modules and execution engine 
-	* Version tested: 0.5.6 - 0.5.8.
+	* Version tested: 0.6.1
 	* Obtained with Maven automatically from http://mvnrepository.com/artifact/io.sarl.maven).
 
 
@@ -77,11 +77,8 @@ This needs to be set-up once. After that you can just run it by:
 The compilation is done via Maven (Maven Getting Started Guide http://tinyurl.com/y994z75j):
 
 1. Make sure ```pom.xml``` is correctly configured with either:
-	* sarl.version: 0.4.2 AND janus.version: 2.0.4.2
-	* sarl.version: 0.5.6 AND janus.version: 2.0.5.6
-		* this does not compile in CLI (https://github.com/spring-projects/aws-maven/issues/25)
-	* sarl version: 0.5.8 AND janus.version: 2.0.5.8
-	* sarl version: 0.6.1 AND janus.version: 2.0.6.1 (compiles but does now work due to version issues with Hazelcast version mismatches
+	* In general for sarl.version: 0.x.y one should use janus.version: 2.0.x.y
+	* Some versions of SARL may not compile on CLI but will do in ECLIPSE. See [this post](https://github.com/spring-projects/aws-maven/issues/25)
 2. Compile with either:
 	* ```mvn compile``` (default pom) or ```mvn compile -f <pom file>``` to compile the application. Compiled classes will be placed in ```target/classes```
 	* To do a clean compile: ```mvn clean compile```
@@ -118,6 +115,9 @@ You can use this project off-the-shelf to make use of the SARL connectivity infr
 			<!-- SARL Elevator Controller framework version -->
 			<sarl-elvatorsim-ctrl.version>ee4230e</sarl-elvatorsim-ctrl.version>
 		</properties>
+
+Other versions you can use: `-SNAPSHOT`, `sarl-0.6-SNAPSHOT`, or in general `<branch-name>-SNAPSHOT`
+
 
 2. Include the JitPack under **repositories*** section be able to connect to bitbucket system:
 
@@ -178,7 +178,7 @@ SARL agents can just handle these events via SARL behaviors.
 
 * Skill implements the capacity action `sendCar(action : SendCarAction)` and the connection action `act_connectToSimulator()` 
 
-Internally, the skill extends the _abstract_ skill Java class **ClientElevatorSimulator** which acts a middle layer between the elevator simulator and the SARL framework. 
+Internally, the skill extends the _abstract_ skill Java class **ClientElevatorSimulator** which acts a middle layer between the elevator simulator and the SARL framework. Such class does the low-level _translation of JSON_ to objects and _call-backs_ and has a **NetworkConnection**  handler to the network connection.
 
 * It actually connects and maintains the network connection to the simulator via an object of class **NetworkConnection**. 
 * It continuously receives JSON messages from simulator server, decodes them, and calls corresponding abstract methods. This methods are implemented in a fully instantiated skill, for example by emitting a corresponding SARL event (like **Skill_SingleSimulatorInteraction** concrete skill does).
@@ -199,7 +199,7 @@ To establish the connection, the agents adopts the skill and then issue the conn
 
 #### Skill_MultipleSimulatorInteraction ####
 
-Further extends skill **Cap_SimulatorInteraction** to share a connection to the elevator simulator amongst multiple SARL agents (corresponding to multiple cars).
+Further extends skill **Skill_SingleSimulatorInteraction** to share a connection to the elevator simulator amongst multiple SARL agents (corresponding to multiple cars).
 
 In a multi-agent SAR application, each agent register to control one car. There will be only _one_ connection to the simulator via a static singleton object `sharedConnection` of class `NetworkConnection`. The first time the skill is created, the connection will be established and `sharedConnection` will be instantiated. After that, it will be re-used.
 
@@ -210,6 +210,7 @@ Each agent should then connect as follows:
 
 The third argument is a list of car ids that the agent is allowed to control. When a **sendCar** action is issued by an agent, it is only allowed (and corresponding message sent to simulator) if agent is controlling the corresponding car.
 
+**NOTE:** While the network connection will be one, each agent will have its own **Skill_MultipleSimulatorInteraction** skill, which in term is a **Skill_SingleSimulatorInteraction**. So when a JSON message arrives, any of those skills using the same `NetworkConnection` handler could read it and act upon. This is a bit non-robust as one never knows which skill/agent will read a message from the simulator server.
 
 
 #### Skill_ConsoleReporting ####
