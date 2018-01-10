@@ -6,7 +6,7 @@ The SARL infrastructure provided in this project can be used "off-the-shelf" to 
 
 This project was part of a team-based programming project course under the supervision of A/Prof. Sebastian Sardina; see below for contacts. 
 
-
+[TOC]
 
 ## INSTALLATION ##
 
