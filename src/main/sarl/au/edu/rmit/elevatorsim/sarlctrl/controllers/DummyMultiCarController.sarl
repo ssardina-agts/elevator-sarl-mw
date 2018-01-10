@@ -58,7 +58,7 @@ agent DummyMultiCarController {
 			simulator_port = Integer.parseInt((params.get(1) as String))
 		}
 		setSkill(new Skill_SingleSimulatorInteraction(simulator_host, simulator_port, defaultSpace), Cap_SimulatorInteraction)
-		reportMessage("Successfully connected to elevator hardware at " + simulator_host + ":" + simulator_port);
+		reportMessage("Successfully connected to elevator hardware at {0}:{1}", simulator_host, simulator_port);
 		act_connectToSimulator()
 	}
 
@@ -73,7 +73,7 @@ agent DummyMultiCarController {
 		highestFloor = floors.get(floors.size - 1).id
 		currentFloor = lowestFloor
 		noCars = cars.size
-		reportMessage("Elevator lowest floor is " + lowestFloor + "; and highest floor is " + highestFloor)
+		reportMessage("Elevator lowest floor is {0} and highest floor is {1}", lowestFloor, highestFloor)
 
 		// OK start moving up to highest floor
 		for(var i = 0; i < noCars; i++){

@@ -95,9 +95,9 @@ skill Skill_ConsoleReporting implements Cap_Reporting {
 		}
 	}
 
-	def reportMessage(message : String) {
+	def reportMessage(message : String, params : Object*) {
 		if (level >= 3) {
-			info_with_agent(message)
+			info_with_agent(message, params)
 		}
 	}
 

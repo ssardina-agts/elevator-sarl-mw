@@ -81,5 +81,5 @@ capacity Cap_Reporting {
 	 * 
 	 * @param message message
 	 */
-	def reportMessage(message : String)
+	def reportMessage(message : String, params : Object*)
 }
