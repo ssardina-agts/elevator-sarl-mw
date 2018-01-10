@@ -7,7 +7,7 @@ import io.sarl.core.Logging
 import au.edu.rmit.elevatorsim.Direction
 
 import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_Reporting
-import java.lang.reflect.Array
+
 import java.util.List
 import java.util.ArrayList
 
