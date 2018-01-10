@@ -143,3 +143,4 @@ target/
 src/main/generated-sources
 src/test
 .metadata/
+wiki
