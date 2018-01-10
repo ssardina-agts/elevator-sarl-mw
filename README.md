@@ -2,7 +2,7 @@
 
 This project provides the basic infrastructure, through a capacity/skill, to develop agent-based controllers for the [Java Elevator Simulator (RMIT Version)](https://bitbucket.org/sarlrmit/elevator-sim) in the [SARL Language](https://github.com/sarl/sarl) agent framework. The project also a very basic SARL elevator agent-based controllers using such infrastructure. 
 
-The SARL infrastructure provided in this project can be used "off-the-shelf" to develop other more complex controllers. The infrastructure provides the core basic skills of a SARL agent to control an elevator simulator, by receiving sensor-events and issuing command-events to the simulator.  
+The SARL infrastructure provided in this project can be used "off-the-shelf" to develop other more complex controllers. The infrastructure provides the core basic skills of a SARL agent to control an elevator simulator, by receiving sensor-events and issuing command-events to the simulator.  A very simple dummy agent is provided too.
 
 This project was part of a team-based programming project course under the supervision of A/Prof. Sebastian Sardina; see below for contacts. 
 
@@ -60,6 +60,11 @@ To run the controllers provided in this package, follow the followin steps.
 There are two methods to run the SARL Controller - through Eclipse or through the CLI.
 
 #### Running from the SARL Eclipse Distribution ####
+
+You can just run the main agent doing _RUN AS SARL Agent_ on the agent file (right click) or you can create a _SARL APPLICATION_ under _RUN Configurations_. Remember that you may then need to configure that runner to account for other aspects, like parameters or setting of environment variables. This woul de the easiest way. Once you run it for the first time, the run configuration will stay.
+
+Alternatively, the "low-level" Java based configuration is as follows:
+
 1. Go to *Run > Run Configurations* and double-click on **Java Application**.
 2. In the *Project* field browse for the project you have just imported into the workspace (defaults to ```sarl-elevatorsim-ctrl```).
 3. In the *Main class* field search for ```io.janusproject.Boot```.
@@ -271,12 +276,6 @@ your Maven dependencies and generally resolve any corrupted dependencies or fail
 	* Main page: <http://www.sarl.io/>
 	* github repo: <https://github.com/sarl/sarl>
 	* User forum: <https://groups.google.com/forum/?hl=en#!forum/sarl>
-* SWI Prolog:
-	* Main web page: <http://www.swi-prolog.org/>
-	* JPL module (bidirectional link SWI-Java) for SWI: 
-		* <http://www.swi-prolog.org/pldoc/doc_for?object=section(%27packages/jpl.html%27>
-		* <http://jpl7.org/740/PrologApiOverview.jsp>
-* Mochalog (higher abstraction than JPL for SWI Connectivity): <https://github.com/mochalog/mochalog>
 
 
 ## PROJECT LEADER & CONTACT ##
