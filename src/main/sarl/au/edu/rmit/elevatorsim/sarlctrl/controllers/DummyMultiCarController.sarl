@@ -94,7 +94,7 @@ agent DummyMultiCarController {
 	 * When the door closes we can send the car to its next destination
 	 */
 	on DoorClosedPercept {
-		var next_floor : int
+		var next_floor : int = -1
 		var next_dir : Direction
 
 		if (currentFloor == highestFloor) {
