@@ -3,10 +3,11 @@ package au.edu.rmit.elevatorsim;
 /**
  * Enum representing a direction of elevator travel.
  * @author Joshua Beale
+ * @author Sebastian Sardina
  */
 public enum Direction {
     // Elevators can travel upwards/downwards
-	UP("up"), DOWN("down");
+	UP("up"), DOWN("down"), UNKNOWN("unknown");
 
     // String representation of the chosen direction
 	public final String name;
@@ -26,10 +27,13 @@ public enum Direction {
 	 * @return Direction instance
 	 */
 	public static Direction getDirection(String name) {
-		if (name.equals("down")) {
-			return DOWN;
-		} else {
-			return UP;
+		switch (name) {
+	        case "down": 
+	        	return DOWN;
+	        case "up":
+				return UP;
+	        default:
+	        	return UNKNOWN;
 		}
 	}
 
@@ -38,10 +42,13 @@ public enum Direction {
 	 * @return Switched direction
 	 */
 	public Direction switchDirection() {
-		if (this == UP) {
-			return DOWN;
-		} else {
+		switch (this) {
+        case UP: 
+        	return DOWN;
+        case DOWN:
 			return UP;
+        default:
+        	return UNKNOWN;
 		}
 	}
 }

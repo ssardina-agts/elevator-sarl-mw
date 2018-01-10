@@ -7,6 +7,9 @@ import io.sarl.core.Logging
 import au.edu.rmit.elevatorsim.Direction
 
 import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_Reporting
+import java.lang.reflect.Array
+import java.util.List
+import java.util.ArrayList
 
 /** 
  * Skill for console-based reporting of elevator actions
@@ -18,67 +21,83 @@ skill Skill_ConsoleReporting implements Cap_Reporting {
 
     // Reporting log level
 	val level : int
-
-	new (l : int) {
+	val name : String
+	
+	new (l : int, name : String) {
 		super() // Call the super's constructor
     	level = l // TODO this should probably be done with the Logging Capacity level
+    	this.name = name
 	}
-
-	new () {
+	new (name : String) {
 		super() // Call the super's constructor
 		level = 0
+		this.name = name
 	}
 
-	override reportTravellingTo(car : int, floor : int) {
+
+	//	Check Varidic (varargs in java) arguments in SARL: http://www.sarl.io/docs/official/reference/general/FuncDecls.html
+	private def info_with_agent(message : String, params : Object*) {
+		
+		// Extend params with the agent name
+		var params2 : List<Object> = new ArrayList<Object>(params.size + 1)
+		params2.addAll(params)
+		params2.add(name)
+
+		info("**{" + params.size + "}**: " + message, params2.toArray())
+	}
+
+
+
+
+	def reportTravellingTo(car : int, floor : int, dir : Direction = Direction.UNKNOWN) {
 		if (level >= 0) {
-			info("Car " + car + ": We are DEPARTING for floor " + floor)
+			 info_with_agent("SENDING car {0} to floor {1} towards direction {2}.", car, floor, dir.toString)
 		}
 	}
 
-	override reportArrivedAt(car : int, floor : int) {
-		info("Car " + car + ": We have ARRIVED at floor " + floor)
+	def reportArrivedAt(car : int, floor : int) {
+		info_with_agent("Car {0} ARRIVED at floor {1}.", car, floor)
 	}
 
-	override reportLeavingFrom(car : int, floor : int, numPassengers : int) {
+	def reportLeavingFrom(car : int, floor : int, numPassengers : int) {
 		if (level >= 0) {
-			info("Car " + car + ": I'm closing the door at floor " + floor + " with " + numPassengers +
-				" people on board")
+			info_with_agent("Car {0} CLOSING DOOR at floor {1} with {2} passengers.", car, floor, numPassengers)
 		}
 	}
 
-	override reportLeavingFrom(car : int, floor : int) {
+	def reportLeavingFrom(car : int, floor : int) {
 		if (level >= 2) {
-			info("Car " + car + ": I'm closing the door at floor " + floor)
+			info_with_agent("Car {0} CLOSING DOOR at floor {1}.", car, floor)
 		}
 	}
 
-	override reportPersonEntered(car : int) {
+	def reportPersonEntered(car : int) {
 		if (level >= 2) {
-			info("Car " + car + ": Someone entered")
+			info_with_agent("Someone ENTERED to car {0}.", car)
 		}
 	}
 
-	override reportPersonExited(car : int) {
+	def reportPersonExited(car : int) {
 		if (level >= 2) {
-			info("Car " + car + ": Someone exited")
+			info_with_agent("Someone EXITED to car {0}.", car)
 		}
 	}
 
-	override reportPassengerRequestedFloor(car : int, floor : int) {
+	def reportPassengerRequestedFloor(car : int, floor : int) {
 		if (level >= 2) {
-			info("Car " + car + ": Someone wants to get off in floor " + floor)
+			info_with_agent("Someone wants to GET OFF at floor {0}.", car)
 		}
 	}
 	
-	override reportPersonRequestedService(floor : int, direction : Direction) {
+	def reportPersonRequestedService(floor : int, direction : Direction) {
 		if (level >= 1) {
-			info("Someone requested service at floor " + floor + " towards direction " + direction.name)
+			info_with_agent("Someone REQUESTED SERVICE at at floor {0} towards direction {1}.", floor, direction.toString)
 		}
 	}
 
-	override reportMessage(message : String) {
+	def reportMessage(message : String) {
 		if (level >= 3) {
-			info(message)
+			info_with_agent(message)
 		}
 	}
 

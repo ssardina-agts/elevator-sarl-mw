@@ -27,8 +27,9 @@ import au.edu.rmit.elevatorsim.sarlctrl.events.SendCarAction
  * @author ssardina
  */
 agent DummyMultiCarController {
-
 	uses DefaultContextInteractions, Cap_SimulatorInteraction, Cap_Reporting
+
+	val agentName = "Dummy"
 
 	// /////////////////////////////////////// BELIEFS ///////////////////////////////////////////
 	// Data-beliefs to keep track
@@ -48,7 +49,7 @@ agent DummyMultiCarController {
 		var params = occurrence.parameters
 
 		// Setup Console Reporting skill to report/talk behavior
-		setSkill(new Skill_ConsoleReporting(3), Cap_Reporting)
+		setSkill(new Skill_ConsoleReporting(3, agentName), Cap_Reporting)
 
 		// Setup skill to control elevator simulator
 		// (includes connecting to simulator)
@@ -88,17 +89,28 @@ agent DummyMultiCarController {
 		moving = false
 	}
 
+
+	/*
+	 * When the door closes we can send the car to its next destination
+	 */
 	on DoorClosedPercept {
-		// Now go to the other extreme....
+		var next_floor : int
+		var next_dir : Direction
+
 		if (currentFloor == highestFloor) {
-			sendCar(new SendCarAction(occurrence.car, lowestFloor, Direction.UP)) // this is the actual MOVEMENT action!
-			moving = true
+			next_floor = lowestFloor
+			next_dir = Direction.UP
 		} else if (currentFloor == lowestFloor) {
-			sendCar(new SendCarAction(occurrence.car, highestFloor, Direction.DOWN)) // this is the actual MOVEMENT action!
-			moving = true
-		} else {
-			moving = false			
+			next_floor = highestFloor
+			next_dir = Direction.DOWN
 		}
+		
+		if (next_floor > -1) {
+			sendCar(new SendCarAction(occurrence.car, next_floor, next_dir)) // this is the actual MOVEMENT action!
+			reportTravellingTo(occurrence.car, next_floor, next_dir)
+			moving = true
+		} 
+		
 	}
 	
 }
