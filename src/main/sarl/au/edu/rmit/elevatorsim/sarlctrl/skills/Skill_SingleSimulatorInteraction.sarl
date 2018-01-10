@@ -16,6 +16,7 @@ import au.edu.rmit.elevatorsim.sarlctrl.events.ModelChangePercept
 import au.edu.rmit.elevatorsim.sarlctrl.events.PersonEnteredPercept
 import au.edu.rmit.elevatorsim.sarlctrl.events.PersonExitedPercept
 import au.edu.rmit.elevatorsim.sarlctrl.events.SendCarAction
+
 import au.edu.rmit.elevatorsim.net.ClientElevatorSimulator
 import au.edu.rmit.elevatorsim.net.ModelHolder
 import au.edu.rmit.elevatorsim.net.NetworkConnection
@@ -23,6 +24,7 @@ import au.edu.rmit.elevatorsim.net.NetworkConnection
 import io.sarl.lang.SARLVersion
 import io.sarl.core.Logging
 import io.sarl.core.ExternalContextAccess
+
 import io.sarl.lang.core.EventSpace
 
 import java.io.IOException
@@ -41,12 +43,18 @@ skill Skill_SingleSimulatorInteraction extends ClientElevatorSimulator
     implements Cap_SimulatorInteraction
 {
     uses Logging
+
 	uses ExternalContextAccess // SARL compiler will uses the emit function from the capacity that calls the emit function (with 3 parameters) of the space for you.
+//	uses DefaultContextInteractions  // Functions to interact with the default context, and its default space
     
-    
+    // Space where elevator events should be emitted
     private var agentSpace : EventSpace
+    
+    // Address of the elevator simulator
 	protected var host : String
 	protected var port : int
+
+
 
     public new(host : String, port : int, agentSpace : EventSpace)
         throws IOException
@@ -84,8 +92,6 @@ skill Skill_SingleSimulatorInteraction extends ClientElevatorSimulator
 
 
 
-
-
 	/*
 	 * The following calls back emit corresponding SARL events for each network message received from simulator
 	 * 
@@ -93,61 +99,62 @@ skill Skill_SingleSimulatorInteraction extends ClientElevatorSimulator
 	 */
     protected override onModelChanged(id : int, time : long, newModel : ModelHolder) 
         throws IOException {
-        agentSpace.emit(new ModelChangePercept(time, id, newModel))
-    }
+//		agentSpace.emit(new ModelChangePercept(time, id, newModel))
+		emit(agentSpace, new ModelChangePercept(time, id, newModel))
+	}
 
     protected override onCarRequested(id : int, time : long, floor : int, 
         direction : String) throws IOException
     {
-        agentSpace.emit(new CarRequestPercept(time, id, floor, direction))
+		emit(agentSpace, new CarRequestPercept(time, id, floor, direction))
     }
 
     protected override onDoorOpened(id : int, time : long, floor : int, 
         car : int) throws IOException 
     {
-        agentSpace.emit(new DoorOpenedPercept(time, id, car, floor))
+        emit(agentSpace,new DoorOpenedPercept(time, id, car, floor))
     }
 
     protected override onDoorClosed(id : int, time : long, floor : int, 
         car : int) throws IOException 
     {
-        agentSpace.emit(new DoorClosedPercept(time, id, car, floor))
+        emit(agentSpace,new DoorClosedPercept(time, id, car, floor))
     }
 
     protected override onDoorSensorClear(id : int, time : long, floor : int, 
         car : int) throws IOException 
     {
-        agentSpace.emit(new DoorSensorClearedPercept(time, id, car, floor))
+        emit(agentSpace,new DoorSensorClearedPercept(time, id, car, floor))
     }
     
     protected override onCarArrived(id : int, time : long, floor : int, 
         car : int) throws IOException 
     {
-        agentSpace.emit(new CarArrivedPercept(time, id, car, floor))
+        emit(agentSpace,new CarArrivedPercept(time, id, car, floor))
     }
 
     protected override onPersonEnteredCar(id : int, time : long, car : int) 
         throws IOException
     {
-        agentSpace.emit(new PersonEnteredPercept(time, id, car))
+        emit(agentSpace,new PersonEnteredPercept(time, id, car))
     }
 
     protected override onPersonLeftCar(id : int, time : long, car : int) 
         throws IOException
     {
-        agentSpace.emit(new PersonExitedPercept(time, id, car))
+        emit(agentSpace,new PersonExitedPercept(time, id, car))
     }
 
     protected override onFloorPassed(id : int, time : long, floor : int,
         car : int) throws IOException 
     {
-        agentSpace.emit(new CarPassedFloorPercept(time, id, car, floor))
+        emit(agentSpace,new CarPassedFloorPercept(time, id, car, floor))
     }
 
     protected override onFloorRequested(id : int, time : long, floor : int,
         car : int) throws IOException 
     {
-        agentSpace.emit(new FloorRequestPercept(time, id, car, floor))
+        emit(agentSpace,new FloorRequestPercept(time, id, car, floor))
     }
 
 

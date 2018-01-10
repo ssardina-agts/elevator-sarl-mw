@@ -10,15 +10,15 @@ public final class SARL_ELEVATOR_CTRL {
 	/** 
 	 * The version of this release. The second number matches the SARL version 
 	 */
-	val public SPECIFICATION_RELEASE_VERSION = 1.5
+	val public SPECIFICATION_RELEASE_VERSION = 1.6
 
 	val public AUTHOR = "Sebastian Sardina"
 	
 	/** 
 	 * Flag that indicates if the version of SARL compatible with this release. 
 	 */
-	val public MINIMAL_SARL_VERSION = 0.5
-	val public MAXIMAL_SARL_VERSION = 0.5
+	val public MINIMAL_SARL_VERSION = 0.6
+	val public MAXIMAL_SARL_VERSION = 0.6
 
 	/** 
 	 * The minimal JDK version to use SARL features.

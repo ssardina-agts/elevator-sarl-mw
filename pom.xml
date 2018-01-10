@@ -2,16 +2,27 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bitbucket.sarlrmit</groupId>
 	<artifactId>sarl-elevatorsim-ctrl</artifactId>
-	<version>1.5.8</version>
+	<version>1.0.6.1</version>
     <properties>
         <janus.version>2.${sarl.version}</janus.version>
-        <sarl.version>0.5.8</sarl.version>
+        <sarl.version>0.6.1</sarl.version>
         <json.version>20160810</json.version>
         <compiler.level>1.8</compiler.level>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+ 
+        	
     <build>
+	  <resources>
+	       <resource>
+	            <directory>src/main/sarl</directory>
+	            <filtering>false</filtering>
+	        </resource>
+	        <resource>
+	            <directory>src/main/java</directory>
+	            <filtering>false</filtering>
+	        </resource>
+	  </resources>
         <plugins>
             <plugin>
                 <groupId>io.sarl.maven</groupId>

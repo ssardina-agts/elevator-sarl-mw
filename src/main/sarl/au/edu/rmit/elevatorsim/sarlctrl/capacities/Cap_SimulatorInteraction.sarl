@@ -21,13 +21,19 @@ capacity Cap_SimulatorInteraction
 	 */
 	def sendCar(action : SendCarAction)
 
-
 	/** 
      * Setup ElevatorSim interaction - connects to the RMIT Elevator Simulator server
 	 * @param address URL to connect to, defaults to localhost
 	 * @param port Port to connect on, defaults to 8081
 	 */
 	def act_connectToSimulator(address : String, port : int)
+
+
+
+	/** 
+	 * Setup ElevatorSim interaction - connects to the RMIT Elevator Simulator server
+	 * When no paramters are given, the host+port stored when object was created is used
+	 */
 	def act_connectToSimulator()
 
 }

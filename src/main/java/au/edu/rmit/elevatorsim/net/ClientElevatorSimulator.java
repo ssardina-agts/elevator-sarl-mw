@@ -25,7 +25,6 @@ public abstract class ClientElevatorSimulator extends Skill implements
     Runnable, Capacity, NetworkConnection.Listener
 {
 	private NetworkConnection connection;
-	private boolean connection_registered = false;
 	
 	private int nextActionId = 0;
 	private Map<Integer, Runnable> successCallbacks = new HashMap<>();
@@ -37,10 +36,12 @@ public abstract class ClientElevatorSimulator extends Skill implements
 	private boolean ended = false;
 	
 	private Logger logger = Logger.getLogger(getClass().getSimpleName());
-
+	
 	public ClientElevatorSimulator(NetworkConnection connection) throws IOException
 	{
 		if (connection != null) registerConnection(connection);
+
+		logger.setLevel(Level.FINER);
 	}
 
 	public void registerConnection(NetworkConnection connection) throws IOException
@@ -48,7 +49,6 @@ public abstract class ClientElevatorSimulator extends Skill implements
 		if (connection != null) {
 			this.connection = connection;
 			this.connection.addListener(this);
-			connection_registered = true;
 		} 
 	}
 	
@@ -101,7 +101,10 @@ public abstract class ClientElevatorSimulator extends Skill implements
 		int id = event.getInt("id");
 		
 		//logger.log(Level.INFO, "Event received: " + event.toString(4));
-
+		logger.setLevel(Level.ALL);
+		// TODO: Why is it not working if I log in Level.FINE?
+//		System.out.println("NIVEL: " + logger.getLevel().getName());
+//		logger.log(Level.INFO,"Event received from Simulator: " + id + " for agent: " + this.getOwner().getID());
 		switch (type)
 		{
 			case "modelChanged":

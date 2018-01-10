@@ -1,6 +1,3 @@
-/** 
- * 
- */
 package au.edu.rmit.elevatorsim.sarlctrl.skills
 
 import au.edu.rmit.elevatorsim.sarlctrl.events.SendCarAction
@@ -8,14 +5,18 @@ import au.edu.rmit.elevatorsim.net.NetworkConnection
 import io.sarl.lang.core.EventSpace
 import java.io.IOException
 
+//import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_SimulatorInteraction
+
+
 /**
  * Allows for a shared elevator simulator connection amongst
  * multiple agents (corresponding to multiple cars)
  * @author Matthew McNally
+ * @author Sebastian Sardina (ssardina@gmail.com)
  */
-public class Skill_MultipleSimulatorInteraction 
-    extends Skill_SingleSimulatorInteraction
-{
+class Skill_MultipleSimulatorInteraction extends Skill_SingleSimulatorInteraction 
+//implements Cap_SimulatorInteraction
+{ 
     // Singleton based network connection
     private static var sharedConnection : NetworkConnection
     // Cars which the agent that this skill has been assigned to
@@ -23,7 +24,15 @@ public class Skill_MultipleSimulatorInteraction
     
     // TODO: make this a set so that no repeated cars possible?
     private val assignedCars : int[]
-    
+ 
+ 
+ 	/*
+ 	 * Create a Multi Simulator Interaction connection to game server
+ 	 * @param host name of the game server
+ 	 * @param of the game server
+ 	 * @param cars assigned to this link-connection
+ 	 * @param space where events must be emitted
+ 	 */   
     public new(host : String, port : int, assignedCars : int[],
         agentSpace : EventSpace) throws IOException
     {
@@ -31,30 +40,24 @@ public class Skill_MultipleSimulatorInteraction
 		this.assignedCars = assignedCars
 	}
 
-	override def act_connectToSimulator(address : String, port : int) {
+
+	def act_connectToSimulator(address : String, port : int) : void {
 		this.host = host
 		this.port = port
+		
 		act_connectToSimulator()
 	}
 
-	override def act_connectToSimulator() {
-		registerConnection(getSharedConnection(this.host, this.port))
+	def act_connectToSimulator() : void  {
+		if (sharedConnection === null) {
+//			System.out.println("Creating a NEW Network Connection to Simulator")
+			sharedConnection = new NetworkConnection(this.host, this.port)
+		}
+		registerConnection(sharedConnection)
 		this.start()
 	}
     
-    private static def getSharedConnection(host : String,
-        port : int) : NetworkConnection
-    {
-        if (sharedConnection === null)
-        {
-            sharedConnection = new NetworkConnection(host, port)
-        }
-        
-        return sharedConnection
-    }
-
-    public override sendCar(action : SendCarAction)
-    {
+    def sendCar(action : SendCarAction) : void {
         if (assignedCars !== null) 
         {
             // check if this action is allowed

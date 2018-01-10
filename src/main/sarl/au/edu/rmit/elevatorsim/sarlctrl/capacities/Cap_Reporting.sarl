@@ -16,8 +16,9 @@ capacity Cap_Reporting {
 	 * 
 	 * @param car car
 	 * @param floor target floor
+	 * @param advertised next direction of travel
 	 */
-	def reportTravellingTo(car : int, floor : int)
+	def reportTravellingTo(car : int, floor : int, dir : Direction = Direction.UNKNOWN)
 	
 	/** 
 	 * Car has arrived at a floor 
