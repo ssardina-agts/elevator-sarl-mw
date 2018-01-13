@@ -1,9 +1,9 @@
 /**
  * 
  */
-package au.edu.rmit.elevatorsim.sarlctrl.capacities
+package au.edu.rmit.agtgrp.elevatorsim.sarlctrl.capacities
 
-import au.edu.rmit.elevatorsim.sarlctrl.events.SendCarAction
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.events.SendCarAction
 
 /**
  * Allows for actions to be submitted to the

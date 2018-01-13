@@ -1,9 +1,9 @@
 /**
  * 
  */
-package au.edu.rmit.elevatorsim.sarlctrl.events
+package au.edu.rmit.agtgrp.elevatorsim.sarlctrl.events
 
-import au.edu.rmit.elevatorsim.Direction
+import au.edu.rmit.agtgrp.elevatorsim.Direction
 
 /**
  * Series of action types which can be

@@ -1,4 +1,4 @@
-package au.edu.rmit.elevatorsim;
+package au.edu.rmit.agtgrp.elevatorsim;
 
 /**
  * Enum representing a direction of elevator travel.

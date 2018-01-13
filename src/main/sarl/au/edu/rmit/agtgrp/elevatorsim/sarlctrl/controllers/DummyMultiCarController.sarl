@@ -5,22 +5,22 @@
  * 
  * Objective is to show how to connect and send a car to a floor
  */
-package au.edu.rmit.elevatorsim.sarlctrl.controllers
+package au.edu.rmit.agtgrp.elevatorsim.sarlctrl.controllers
 
 import io.sarl.core.DefaultContextInteractions
 import io.sarl.core.Initialize
-import au.edu.rmit.elevatorsim.Direction
+import au.edu.rmit.agtgrp.elevatorsim.Direction
 
-import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_Reporting
-import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_SimulatorInteraction
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.capacities.Cap_Reporting
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.capacities.Cap_SimulatorInteraction
 
-import au.edu.rmit.elevatorsim.sarlctrl.skills.Skill_SingleSimulatorInteraction
-import au.edu.rmit.elevatorsim.sarlctrl.skills.Skill_ConsoleReporting
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.skills.Skill_SingleSimulatorInteraction
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.skills.Skill_ConsoleReporting
 
-import au.edu.rmit.elevatorsim.sarlctrl.events.CarArrivedPercept
-import au.edu.rmit.elevatorsim.sarlctrl.events.DoorClosedPercept
-import au.edu.rmit.elevatorsim.sarlctrl.events.ModelChangePercept
-import au.edu.rmit.elevatorsim.sarlctrl.events.SendCarAction
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.events.CarArrivedPercept
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.events.DoorClosedPercept
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.events.ModelChangePercept
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.events.SendCarAction
 
 
 /** 

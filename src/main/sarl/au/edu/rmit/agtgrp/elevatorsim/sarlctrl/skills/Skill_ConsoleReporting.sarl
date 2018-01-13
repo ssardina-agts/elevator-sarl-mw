@@ -1,12 +1,12 @@
 /** 
  * 
  */
-package au.edu.rmit.elevatorsim.sarlctrl.skills
+package au.edu.rmit.agtgrp.elevatorsim.sarlctrl.skills
 
 import io.sarl.core.Logging
-import au.edu.rmit.elevatorsim.Direction
+import au.edu.rmit.agtgrp.elevatorsim.Direction
 
-import au.edu.rmit.elevatorsim.sarlctrl.capacities.Cap_Reporting
+import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.capacities.Cap_Reporting
 
 import java.util.List
 import java.util.ArrayList

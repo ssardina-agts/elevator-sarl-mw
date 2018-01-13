@@ -1,4 +1,4 @@
-package au.edu.rmit.elevatorsim.net;
+package au.edu.rmit.agtgrp.elevatorsim.net;
 
 import java.io.IOException;
 import java.util.HashMap;

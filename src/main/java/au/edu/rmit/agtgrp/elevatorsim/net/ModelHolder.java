@@ -1,4 +1,4 @@
-package au.edu.rmit.elevatorsim.net;
+package au.edu.rmit.agtgrp.elevatorsim.net;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

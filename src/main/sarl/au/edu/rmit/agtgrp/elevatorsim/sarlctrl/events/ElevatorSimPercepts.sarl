@@ -1,7 +1,7 @@
-package au.edu.rmit.elevatorsim.sarlctrl.events
+package au.edu.rmit.agtgrp.elevatorsim.sarlctrl.events
 
-import au.edu.rmit.elevatorsim.Direction
-import au.edu.rmit.elevatorsim.net.ModelHolder
+import au.edu.rmit.agtgrp.elevatorsim.Direction
+import au.edu.rmit.agtgrp.elevatorsim.net.ModelHolder
 
 /** 
  * Collection of Percepts that convey ElevatorSim events to Agents
