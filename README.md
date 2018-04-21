@@ -9,9 +9,6 @@ The middleware provides the core basic skills of a SARL agent to control an elev
 This project was part of a team-based programming project course under the supervision of A/Prof. Sebastian Sardina (see below for contacts). 
 The largest part of that project involved extending the Java-based elevator simulator and can be found [here](https://bitbucket.org/ssardina-research/elevator-sim).
 
-
-Please refer to the [**Project Wiki**](https://bitbucket.org/sarlrmit/sarl-elevatorsim-ctrl/wiki/Home) for information on how to install and use this infrastructure. 
-
 ## PRE-REQUISITES 
 
 * Java Runtime Environment (JRE) and Java Compiler (javac) v1.8 (sun version recommended)
@@ -33,6 +30,7 @@ This controller is provided mostly for testing the middleware. The demo controll
 Once the middlware is ready, you can compile + install it in your local maven repository (e.g., `~/.m2`) via `mvn clean install`. 
 To just produce the JAR file (to then be used in another SARL Controller project), run `mvn clean package` and the JAR file will be installed under `target/`.
 
+Remember that maven configuration file `pom.xml` uses environment variable `SARL_VERSION` to extract the SARL version that needs to be used.
 
 ## USING THE MIDDLEWARE 
 
