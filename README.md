@@ -36,46 +36,26 @@ Remember that maven configuration file `pom.xml` uses environment variable `SARL
 
 You can use this project off-the-shelf to make use of the SARL connectivity infrastructure so as to build your own SARL controllers. 
 
-When developing your own SARL controller, you just need to "import" this project in order to equip your agents with the interaction and reporting capacities/skills:
+In general, you need to download or produce the JAR file for the Middleware and install it in your local maven repo for your controller application to use it.
 
-1. Define the version of the SARL controller that you want to use in the **properties** section:
+First the `pom.xml` of your SARL controller application using the this middlware should have  the following dependency to the middleware:
 
-		<properties>
-			...
-			<!-- SARL Elevator Controller framework version -->
-			<sarl-elvatorsim-ctrl.version>ee4230e</sarl-elvatorsim-ctrl.version>
-		</properties>
-Other versions you can use: `-SNAPSHOT`, `sarl-0.6-SNAPSHOT`, or in general `<branch-name>-SNAPSHOT`
+```
+		<!--  SARL Elevator Control framework -->
+		<dependency>
+		    <groupId>rmit.agtgrp.sarl</groupId>
+		    <artifactId>sarl-elevatorsim-mw</artifactId>
+	    	    <version>${sarl-elevatorsim-mw.version}</version>
+		</dependency>
+```
 
+Then, get the corresponding JAR file for the middleware for the SARL version you intend to use from the Download section (or produce the JAR yourself by cloning and compiling this repo yourself) and run:
 
-2. Include the JitPack under **repositories*** section be able to connect to bitbucket system:
+```
+mvn install:install-file -Dfile=sarl-elevatorsim-mw-1.0.0.7.2.jar -DgroupId=rmit.agentgrp.sarl -DartifactId=sarl-elevator-mw -Dversion=1.0.0.7.2 -Dpackaging=jar
+```
 
-		<repositories>
-			...
-			<!-- JitPack used for remote installation of dependencies from Github -->
-			<repository>
-			<id>jitpack.io</id>
-			<name>JitPack Repository</name>
-			<url>https://jitpack.io</url>
-			</repository>
-		</repositories>
-
-3. Include the **sarl-elvatorsim-ctrl** framework (i.e., this project!) in the **dependencies** section:
-
-		<!-- Project dependencies -->
-		<dependencies>
-			...
-			<!--  SARL Elevator Controller framework -->
-			<dependency>
-			<groupId>org.bitbucket.ssardina-research</groupId>
-			<artifactId>sarl-elvatorsim-ctrl</artifactId>
-			<version>${sarl-elvatorsim-ctrl.version}</version>
-			</dependency>
-		</dependencies>
-
-
-You can do that by suitably configuring your project's POM file `pom.xml` (to "import" this project) and then using the corresponding skills for the capacities provided.
-
+This will install the middleware infrastructure in your local maven repository and your application will now have access to it. Done!
 
 
 Below we describe the middleware framework (that is, what is provided for you to use in your SARL elevator controller project).
