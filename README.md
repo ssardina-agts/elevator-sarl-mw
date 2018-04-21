@@ -1,4 +1,4 @@
-# SARL Elevator Simulator Middleware Connectivity Framework (for Java-based Elevator Simulator) 
+# SARL Elevator Simulator Middleware (for Java-based Elevator Simulator) 
 
 This project provides the basic middleware infrastructure, through a capacity/skill, to develop agent-based controllers for the [Java Elevator Simulator (RMIT Version)](https://bitbucket.org/sarlrmit/elevator-sim) in the [SARL Language](https://github.com/sarl/sarl) agent framework. 
 The project also a includes a basic demo SARL elevator agent-based controllers taht uses the middlware infrastructure. 
