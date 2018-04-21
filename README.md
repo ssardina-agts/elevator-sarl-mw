@@ -264,26 +264,22 @@ your Maven dependencies and generally resolve any corrupted dependencies or fail
 	* JANUS / SRE (for janus.version in pom.xml):  <http://search.maven.org/#search%7Cga%7C1%7Cjanusproject>
 * JitPack for remote installation of dependencies from Github & Bitbucket: 
 	* Mochalog: <https://jitpack.io/#mochalog/mochalog>
-	* sarl-elvatorsim-ctrl: <https://jitpack.io/#org.bitbucket.sarlrmit/sarl-elvatorsim-ctrl>
+	* sarl-elvatorsim-mw: <https://jitpack.io/#org.bitbucket.sarlrmit/sarl-elvatorsim-mw>
 * SARL:
 	* Main page: <http://www.sarl.io/>
 	* github repo: <https://github.com/sarl/sarl>
 	* User forum: <https://groups.google.com/forum/?hl=en#!forum/sarl>
 
 
-## PROJECT LEADER & CONTACT ##
-
-* Sebastian Sardina - ssardina@gmail.com
-
-
 ## PROJECT CONTRIBUTORS ##
 
-* Matthew McNally (Project Coordinator and SARL Agent Developer) 
+* Sebastian Sardina (Project Supervisor & Contact - ssardina@gmail.com)
+* Matthew McNally (Capstone Project Coordinator and SARL Agent Developer) 
 * Joshua Richards (Java Elevator Sim Server developer)
 * Joshua Beale (SARL Agent Developer)
 * Dylan Rock (Documentation)
-* Sebastian Sardina (Project Supervisor)
 
 
 ## LICENSE ##
+
 This project is using the GPLv3 for open source licensing for information and the license visit GNU website (https://www.gnu.org/licenses/gpl-3.0.en.html).
