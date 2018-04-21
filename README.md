@@ -203,21 +203,21 @@ The third argument is a list of car ids that the agent is allowed to control (in
 
 The following self-explanatory events signal something that happened in the simulation:
 
-	import au.edu.rmit.elevatorsim.sarlctrl.events.CarArrivedPercept
-	import au.edu.rmit.elevatorsim.sarlctrl.events.CarPassedFloorPercept
-	import au.edu.rmit.elevatorsim.sarlctrl.events.CarRequestPercept
-	import au.edu.rmit.elevatorsim.sarlctrl.events.DoorClosedPercept
-	import au.edu.rmit.elevatorsim.sarlctrl.events.DoorOpenedPercept
-	import au.edu.rmit.elevatorsim.sarlctrl.events.DoorSensorClearedPercept
-	import au.edu.rmit.elevatorsim.sarlctrl.events.FloorRequestPercept
-	import au.edu.rmit.elevatorsim.sarlctrl.events.ModelChangePercept
-	import au.edu.rmit.elevatorsim.sarlctrl.events.PersonEnteredPercept
-	import au.edu.rmit.elevatorsim.sarlctrl.events.PersonExitedPercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.CarArrivedPercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.CarPassedFloorPercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.CarRequestPercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.DoorClosedPercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.DoorOpenedPercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.DoorSensorClearedPercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.FloorRequestPercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.ModelChangePercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.PersonEnteredPercept
+	import au.edu.rmit.elevatorsim.sarlmw.events.PersonExitedPercept
 
 
 There is also an event corresponding to the send car action:
 
-	import au.edu.rmit.elevatorsim.sarlctrl.events.SendCarAction
+	import au.edu.rmit.elevatorsim.sarlmw.events.SendCarAction
 
 
 
