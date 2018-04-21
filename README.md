@@ -9,15 +9,22 @@ The middleware provides the core basic skills of a SARL agent to control an elev
 This project was part of a team-based programming project course under the supervision of A/Prof. Sebastian Sardina (see below for contacts). 
 The largest part of that project involved extending the Java-based elevator simulator and can be found [here](https://bitbucket.org/ssardina-research/elevator-sim).
 
+**Version convention**: `Major.Minor.<SARL Version>`. For example, 1.3.0.7.2 is version 1.3 for SARL 0.7.2.
+
 ## PRE-REQUISITES 
 
-* Java Runtime Environment (JRE) and Java Compiler (javac) v1.8 (sun version recommended)
+* Java Runtime Environment (JRE) and Java Compiler (`javac`) v1.8 (Sun version recommended)
 * Maven project management and comprehension tool (to meet dependencies, compile, package, run).
 * [The Elevator Simulator Server (RMIT version)](https://bitbucket.org/sarlrmit/elevator-sim).
-* SARL modules and execution engine:
-	* Environment variable `SARL_VERSION` stating the SARL version to be used (e.g., 0.7.2)
-    * Version tested: 0.6.1, 0.7.2
-    * Obtained with Maven automatically from [SARL Maven Resository](http://mvnrepository.com/artifact/io.sarl.maven).
+* SARL (SRE JANUS):
+     * Environment variable `SARL_VERSION` stating the SARL version to be used (e.g., 0.7.2)
+     * Version tested: 0.6.1, 0.7.2
+     * Obtained with Maven automatically from [SARL Maven Resository](http://mvnrepository.com/artifact/io.sarl.maven).
+* JSON version 20160810
+     * To exchanges messages with Elevator Simulator.
+	 * Obtained via Maven automatically.
+
+
 
 ## DEVELOP THE MIDDLEWARE FURTHER 
 
@@ -27,7 +34,7 @@ Please see Step 2 instructions [here](https://bitbucket.org/snippets/ssardina/6e
 To debug your development you may want to use the simple demo controller **DummyMultiCarController** that continuously makes cars go up and down, without doing anything else.
 This controller is provided mostly for testing the middleware. The demo controller is in package `au.edu.rmit.elevatorsim.sarlmw.controllers`
 
-Once the middlware is ready, you can compile + install it in your local maven repository (e.g., `~/.m2`) via `mvn clean install`. 
+Once the middleware is ready, you can compile + install it in your local maven repository (e.g., `~/.m2`) via `mvn clean install`. 
 To just produce the JAR file (to then be used in another SARL Controller project), run `mvn clean package` and the JAR file will be installed under `target/`.
 
 Remember that maven configuration file `pom.xml` uses environment variable `SARL_VERSION` to extract the SARL version that needs to be used.
