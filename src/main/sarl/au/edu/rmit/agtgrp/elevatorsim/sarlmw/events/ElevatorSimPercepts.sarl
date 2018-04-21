@@ -1,4 +1,4 @@
-package au.edu.rmit.agtgrp.elevatorsim.sarlctrl.events
+package au.edu.rmit.agtgrp.elevatorsim.sarlmw.events
 
 import au.edu.rmit.agtgrp.elevatorsim.Direction
 import au.edu.rmit.agtgrp.elevatorsim.net.ModelHolder

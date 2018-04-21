@@ -1,11 +1,11 @@
-package au.edu.rmit.agtgrp.elevatorsim.sarlctrl.skills
+package au.edu.rmit.agtgrp.elevatorsim.sarlmw.skills
 
-import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.events.SendCarAction
+import au.edu.rmit.agtgrp.elevatorsim.sarlmw.events.SendCarAction
 import au.edu.rmit.agtgrp.elevatorsim.net.NetworkConnection
 import io.sarl.lang.core.EventSpace
 import java.io.IOException
 
-//import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.capacities.Cap_SimulatorInteraction
+//import au.edu.rmit.agtgrp.elevatorsim.sarlmw.capacities.Cap_SimulatorInteraction
 
 
 /**

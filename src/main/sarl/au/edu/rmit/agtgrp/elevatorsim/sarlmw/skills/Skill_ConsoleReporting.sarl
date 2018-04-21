@@ -1,12 +1,12 @@
 /** 
  * 
  */
-package au.edu.rmit.agtgrp.elevatorsim.sarlctrl.skills
+package au.edu.rmit.agtgrp.elevatorsim.sarlmw.skills
 
 import io.sarl.core.Logging
 import au.edu.rmit.agtgrp.elevatorsim.Direction
 
-import au.edu.rmit.agtgrp.elevatorsim.sarlctrl.capacities.Cap_Reporting
+import au.edu.rmit.agtgrp.elevatorsim.sarlmw.capacities.Cap_Reporting
 
 import java.util.List
 import java.util.ArrayList
@@ -45,8 +45,6 @@ skill Skill_ConsoleReporting implements Cap_Reporting {
 
 		info("**{" + params.size + "}**: " + message, params2.toArray())
 	}
-
-
 
 
 	def reportTravellingTo(car : int, floor : int, dir : Direction = Direction.UNKNOWN) {

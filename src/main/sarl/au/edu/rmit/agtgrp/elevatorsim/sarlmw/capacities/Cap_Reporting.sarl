@@ -1,4 +1,4 @@
-package au.edu.rmit.agtgrp.elevatorsim.sarlctrl.capacities
+package au.edu.rmit.agtgrp.elevatorsim.sarlmw.capacities
 
 import au.edu.rmit.agtgrp.elevatorsim.Direction
 
