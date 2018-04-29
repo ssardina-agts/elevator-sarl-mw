@@ -43,20 +43,22 @@ Remember that maven configuration file `pom.xml` uses environment variable `SARL
 
 You can use this project off-the-shelf to make use of the SARL connectivity infrastructure so as to build your own SARL controllers. 
 
-In general, you need to download or produce the JAR file for the Middleware and install it in your local maven repo for your controller application to use it.
+To do so, you first need to have the JAR file for the middleware installed in your local Maven repo for your controller application to use it.
 
-First the `pom.xml` of your SARL controller application using the this middlware should have  the following dependency to the middleware:
+First the `pom.xml` of your SARL controller application using the this middleware should have the following dependency to the middleware:
 
 ```
 		<!--  SARL Elevator Control framework -->
 		<dependency>
-		    <groupId>rmit.agtgrp.sarl</groupId>
+		    <groupId>org.bitbucket.ssardina-research</groupId>
 		    <artifactId>sarl-elevatorsim-mw</artifactId>
 	    	    <version>${sarl-elevatorsim-mw.version}</version>
 		</dependency>
 ```
 
-Then, get the corresponding JAR file for the middleware for the SARL version you intend to use from the Download section (or produce the JAR yourself by cloning and compiling this repo yourself) and run:
+There are then two ways to install the corresponding JAR file for the middleware:
+
+1. Manually get the corresponding JAR file for the middleware for the SARL version you intend to use from the Download section (or produce the JAR yourself by cloning and compiling this repo yourself) and run something like this to install it:
 
 ```
 mvn install:install-file -Dfile=sarl-elevatorsim-mw-1.0.0.7.2.jar -DgroupId=rmit.agtgrp.sarl -DartifactId=sarl-elevatorsim-mw -Dversion=1.0.0.7.2 -Dpackaging=jar
@@ -64,8 +66,24 @@ mvn install:install-file -Dfile=sarl-elevatorsim-mw-1.0.0.7.2.jar -DgroupId=rmit
 
 This will install the middleware infrastructure in your local maven repository and your application will now have access to it. Done!
 
+2. You can specify your application to get it automatically via Maven. To do so, include this repository for the JitPack service:
+
+```
+<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+</repositories>
+```	
+
+When you build your application, Maven via JitPack will get middleware from this repo, compile it, package, and install it.
+
+
+
 
 Below we describe the middleware framework (that is, what is provided for you to use in your SARL elevator controller project).
+
 In a nutshell, two capabilities with skills are provided to connect and interact with the elevator simulator and to report domain messages (like an elevator arriving to a floor or a person requesting service). 
 In addition a set of events are defined signaling events in the elevator simulator. These are the events that your agent should handle.
 
