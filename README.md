@@ -18,7 +18,7 @@ The largest part of that project involved extending the Java-based elevator simu
 * [The Elevator Simulator Server (RMIT version)](https://bitbucket.org/sarlrmit/elevator-sim).
 * SARL (SRE JANUS):
      * Environment variable `SARL_VERSION` stating the SARL version to be used (e.g., 0.7.2)
-     * Version tested: 0.6.1, 0.7.2
+     * Versions tested: 0.6.1, 0.7.2
      * Obtained with Maven automatically from [SARL Maven Resository](http://mvnrepository.com/artifact/io.sarl.maven).
 * JSON version 20160810
      * To exchanges messages with Elevator Simulator.
@@ -255,8 +255,7 @@ If you have errors, these will usually tend to be as a result of a Maven issue o
 		3. When the project has finished updating, go to *Project > Clean*. Click OK.
 	* From command cline (CLI):
 		1. Run `mvn clean install` (this will regenerate Maven dependencies).
-	* If you are still having errors, navigate to `~/.m2` on Linux or `C:/Users/<user>/.m2` on Windows and delete the `repository` directory. Trying the troubleshooting steps above again will forcibly regenerate
-your Maven dependencies and generally resolve any corrupted dependencies or failures.
+	* If you are still having errors, navigate to `~/.m2` on Linux or `C:/Users/<user>/.m2` on Windows and delete the repositories that may be causing issues (deleting the whole `repository/` directory could be too drastic) so that they will forcibly be regenerated.
 
 
 
@@ -267,8 +266,8 @@ your Maven dependencies and generally resolve any corrupted dependencies or fail
 	* SARL distribution: <http://mvnrepository.com/artifact/io.sarl.maven>
 	* JANUS / SRE (for janus.version in pom.xml):  <http://search.maven.org/#search%7Cga%7C1%7Cjanusproject>
 * JitPack for remote installation of dependencies from Github & Bitbucket: 
-	* Mochalog: <https://jitpack.io/#mochalog/mochalog>
-	* sarl-elvatorsim-mw: <https://jitpack.io/#org.bitbucket.sarlrmit/sarl-elvatorsim-mw>
+	* Mochalog: <https://github.com/ssardina/mochalog>
+	* sarl-elvatorsim-mw: <https://jitpack.io/#org.bitbucket.ssardina-research/sarl-elevatorsim-mw>
 * SARL:
 	* Main page: <http://www.sarl.io/>
 	* github repo: <https://github.com/sarl/sarl>
