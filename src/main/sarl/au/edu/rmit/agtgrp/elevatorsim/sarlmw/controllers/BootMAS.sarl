@@ -1,0 +1,32 @@
+/** 
+ * 
+ */
+package au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers
+
+import io.janusproject.Boot
+import au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers.DummyMultiCarController
+
+
+/** 
+ * @author ssardina
+ * 
+ */
+class BootMAS {
+	def static main(args : String[]) : void {
+		Boot.offline = true
+		Boot.verboseLevel = 7 //ALL
+		
+		if (args.length == 0) {		
+			Boot.startJanus(typeof(DummyMultiCarController))
+			} 
+		else {
+			val name : String = args.get(0)
+			val c = Class.forName(name)
+
+			System.out.println("Loading SARL controller  agent " + name)
+			Boot.startJanus(typeof(DummyMultiCarController))
+		}
+	}
+}
+
+ 
