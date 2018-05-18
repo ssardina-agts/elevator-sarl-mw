@@ -16,6 +16,7 @@ import au.edu.rmit.agtgrp.elevatorsim.sarlmw.events.ModelChangePercept
 import au.edu.rmit.agtgrp.elevatorsim.sarlmw.events.PersonEnteredPercept
 import au.edu.rmit.agtgrp.elevatorsim.sarlmw.events.PersonExitedPercept
 import au.edu.rmit.agtgrp.elevatorsim.sarlmw.events.SendCarAction
+import au.edu.rmit.agtgrp.elevatorsim.sarlmw.events.SimulationEnd 
 
 import au.edu.rmit.agtgrp.elevatorsim.net.ClientElevatorSimulator
 import au.edu.rmit.agtgrp.elevatorsim.net.ModelHolder
@@ -157,6 +158,9 @@ skill Skill_SingleSimulatorInteraction extends ClientElevatorSimulator
         emit(agentSpace,new FloorRequestPercept(time, id, car, floor))
     }
 
+	protected override onSimulationEnd(id : int, time : long) throws IOException {
+		emit(agentSpace, new SimulationEnd(time, id))
+	}
 
 
 }

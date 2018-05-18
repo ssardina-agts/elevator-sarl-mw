@@ -163,3 +163,14 @@ event FloorRequestPercept extends CarAtFloorPercept {
 		super(time, id, car, floor)
 	}
 }
+
+/** 
+ * A floor being requested by a person in a car
+ * @author Sebastian Sardina
+ */
+event SimulationEnd extends ElevatorSimPercept {
+
+	new(time : Long, id : Integer) {
+		super(time, id)
+	}
+}

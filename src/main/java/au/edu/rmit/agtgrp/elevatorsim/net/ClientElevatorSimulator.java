@@ -500,12 +500,23 @@ public abstract class ClientElevatorSimulator extends Skill implements
 		unprocessedActions.remove(actionId);
 	}
 	
+
+	/**
+	 * Handler method for when the simulation has ended.
+	 * @see onSimulationEnd(int id, long time)
+	 * @param id of message and time
+	 */
 	protected void onSimulationEnded(int id, long time) throws IOException
 	{
 		ended = true;
-		sendEventResponse(id);
+		sendEventResponse(id);	// send response to elevator server because connection will be closed next
+		onSimulationEnd(id, time);	// call call-back, do whatever is needed
+
+		//	terminate connection with server
+		logger.log(Level.INFO, "Simulation ended - Closing connection to elevator");
 		connection.close();
 	}
+	protected void onSimulationEnd(int id, long time) throws IOException {}
 	
 	@Override
 	public final void onTimeout()
