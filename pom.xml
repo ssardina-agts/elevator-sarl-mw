@@ -3,6 +3,12 @@
 	<groupId>org.bitbucket.ssardina-research</groupId>
 	<artifactId>sarl-elevatorsim-mw</artifactId>
 	<version>1.0.${sarl.version}</version>
+	<packaging>pom</packaging>
+
+ 	<name>SARL Middleware for Java-based Elevator Simulator</name>
+  	<description>SARL Capabilities and Skills to interact with the Elevator Simulator</description>
+  	<url>https://bitbucket.org/ssardina-research/sarl-elevatorsim-mw</url>
+
     <properties>
         <janus.version>2.${sarl.version}</janus.version>
         <sarl.version>${env.SARL_VERSION}</sarl.version>
@@ -11,6 +17,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
  
+    <licenses>
+	    <license>
+	      <name>GNU General Public License, Version 3.0</name>
+	      <url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+	    </license>
+  	</licenses>
+  
+  	<developers>
+    	<developer>
+	      <name>Sebastian Sardina</name>
+	      <email>ssardina@gmail.com</email>
+	      <organization>ssardina-research</organization>
+	      <organizationUrl>https://bitbucket.org/ssardina-research/</organizationUrl>
+	    </developer>
+  	</developers>
+  
         	
     <build>
 	  <resources>
@@ -23,7 +45,7 @@
 	            <filtering>false</filtering>
 	        </resource>
 	  </resources>
-        <plugins>
+      <plugins>
             <plugin>
                 <groupId>io.sarl.maven</groupId>
                 <artifactId>sarl-maven-plugin</artifactId>
@@ -37,33 +59,30 @@
             </plugin>
             
  		    <plugin>
-		    <artifactId>maven-assembly-plugin</artifactId>
-		    <configuration>
-		        <archive>
-		            <manifest>
-		                <addClasspath>true</addClasspath>
-		                <!-- <mainClass>io.janusproject.Boot</mainClass> -->
-		                <mainClass>au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers.BootMAS</mainClass>
-		            </manifest>
-		        </archive>
-		        <descriptorRefs>
-		            <descriptorRef>jar-with-dependencies</descriptorRef>
-		        </descriptorRefs>
-		    </configuration>
-		    <executions>
-		        <execution>
-		            <id>make-my-jar-with-dependencies</id>
-		            <phase>package</phase>
-		            <goals>
-		                <goal>single</goal>
-		            </goals>
-		        </execution>
-		    </executions>
-		    </plugin>
-            
-            
-            
-        </plugins>
+			    <artifactId>maven-assembly-plugin</artifactId>
+			    <configuration>
+			        <archive>
+			            <manifest>
+			                <addClasspath>true</addClasspath>
+			                <!-- <mainClass>io.janusproject.Boot</mainClass> -->
+			                <mainClass>au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers.BootMAS</mainClass>
+			            </manifest>
+			        </archive>
+			        <descriptorRefs>
+			            <descriptorRef>jar-with-dependencies</descriptorRef>
+			        </descriptorRefs>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <id>make-my-jar-with-dependencies</id>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>single</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			    </plugin>
+       </plugins>
     </build>
 
     <dependencies>
