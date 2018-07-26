@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bitbucket.ssardina-research</groupId>
 	<artifactId>sarl-elevatorsim-mw</artifactId>
-	<version>1.1.0.7.2</version>
+	<version>1.1.${env.SARL_VERSION}</version>
 
  	<name>SARL Middleware for Java-based Elevator Simulator</name>
   	<description>SARL Capacities and Skills to interact with the Elevator Simulator</description>
