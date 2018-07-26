@@ -8,6 +8,17 @@ import au.edu.rmit.agtgrp.elevatorsim.Direction
  * @author Joshua Richards
  */
 capacity Cap_Reporting {
+
+	/** 
+	 * Report connection/disconnection to hardware
+	 * 
+	 * @param message message
+		 */
+	def reportConnection()
+	def reportConnection(message : String)
+	def reportDisconnection()
+	def reportDisconnection(message : String)
+
 	/** 
 	 * Car(Agent) is taking action to travel to a floor
 	 * 

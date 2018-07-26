@@ -10,6 +10,7 @@ import au.edu.rmit.agtgrp.elevatorsim.sarlmw.capacities.Cap_Reporting
 
 import java.util.List
 import java.util.ArrayList
+import au.edu.rmit.agtgrp.elevatorsim.sarlmw.capacities.Cap_SimulatorInteraction
 
 /** 
  * Skill for console-based reporting of elevator actions
@@ -18,6 +19,7 @@ import java.util.ArrayList
  */
 skill Skill_ConsoleReporting implements Cap_Reporting {
 	uses Logging
+	uses Cap_SimulatorInteraction
 
     // Reporting log level
 	val level : int
@@ -98,5 +100,30 @@ skill Skill_ConsoleReporting implements Cap_Reporting {
 			info_with_agent(message, params)
 		}
 	}
+
+	def reportConnection() {
+		if (is_connected()) { 		
+			info_with_agent('Connected to elevator hardware/simulator at {0}:{1}', get_sim_host(),get_sim_port())
+		} else
+			info_with_agent('Still NOT connected to elevator hardware/simulator at {0}:{1}', get_sim_host(), get_sim_port())
+	}
+
+	def reportConnection(message : String) {
+		if (is_connected()) {
+			info_with_agent('Connected to elevator hardware/simulator at {0}:{1} ({2})', get_sim_host(), get_sim_port(),
+				message)
+		} else
+			info_with_agent('Still NOT connected to elevator hardware/simulator at {0}:{1} ({2})', get_sim_host(), get_sim_port(),
+				message)
+	}
+
+	def reportDisconnection() {
+		info_with_agent('Disconnection to elevator hardware/simulator!')
+	}
+
+	def reportDisconnection(message : String) {
+		info_with_agent('Disconnection to elevator hardware/simulator ({0})', message)
+	}
+
 
 }

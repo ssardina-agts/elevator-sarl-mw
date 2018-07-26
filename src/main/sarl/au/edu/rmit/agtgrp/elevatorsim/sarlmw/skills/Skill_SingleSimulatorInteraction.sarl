@@ -52,11 +52,12 @@ skill Skill_SingleSimulatorInteraction extends ClientElevatorSimulator
     private var agentSpace : EventSpace
     
     // Address of the elevator simulator
-	protected var host : String
-	protected var port : int
+	protected var host : String = "none"
+	protected var port : int = -1
+	protected var is_connected : boolean = false
 
 
-
+	//	Creates the skill by registering host, port and space where events will be put but not connection is yet registered
     public new(host : String, port : int, agentSpace : EventSpace)
         throws IOException
     {
@@ -78,7 +79,21 @@ skill Skill_SingleSimulatorInteraction extends ClientElevatorSimulator
 	def act_connectToSimulator() {
 		registerConnection(new NetworkConnection(this.host, this.port))
 		this.start()
+		is_connected = true
 	}
+
+	def is_connected() : boolean {
+		return is_connected
+	}
+
+	def get_sim_host() : String {
+		return host
+	}
+
+	def get_sim_port() : int {
+		return port
+	}
+	
 
 	def sendCar(action : SendCarAction) {
 		try {

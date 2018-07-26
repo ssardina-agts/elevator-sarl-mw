@@ -1,23 +1,19 @@
-/**
- * 
- */
 package au.edu.rmit.agtgrp.elevatorsim.sarlmw.capacities
 
 import au.edu.rmit.agtgrp.elevatorsim.sarlmw.events.SendCarAction
 
 /**
- * Allows for actions to be submitted to the
- * Elevator Simulator for processing
- * <p>
- * Currently only supports sending a car
- * to a specific floor
- * @author Matthew McNally
- */
+ * Capacity to interact with elevator hardware simulator, including connecting, issuing actions, receiving events 
+ * 
+ * If hardware/simulator is extended with new actions (e.g., turn fan or alarm), then this capacity needs to be extended to 
+ * support those actions
+ *
+*/
 capacity Cap_SimulatorInteraction
 {
 	/** 
 	 * Dispatch a car to a given floor destination
-	 * @param a SendCarAction object containing car numbre, floor destination, and next direction (up/down)
+	 * @param a SendCarAction object containing car number, floor destination, and next direction (up/down)
 	 */
 	def sendCar(action : SendCarAction)
 
@@ -29,11 +25,17 @@ capacity Cap_SimulatorInteraction
 	def act_connectToSimulator(address : String, port : int)
 
 
-
 	/** 
 	 * Setup ElevatorSim interaction - connects to the RMIT Elevator Simulator server
-	 * When no paramters are given, the host+port stored when object was created is used
+	 * When no parameters are given, the host+port stored when object was created is used
 	 */
 	def act_connectToSimulator()
+
+	/*
+	 * Retrieve host and port of the simulator
+	 */
+	def is_connected() : boolean
+	def get_sim_host() : String
+	def get_sim_port() : int
 
 }

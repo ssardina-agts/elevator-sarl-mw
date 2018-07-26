@@ -58,8 +58,8 @@ agent DummyMultiCarController {
 			simulator_port = Integer.parseInt((params.get(1) as String))
 		}
 		setSkill(new Skill_SingleSimulatorInteraction(simulator_host, simulator_port, defaultSpace), Cap_SimulatorInteraction)
-		reportMessage("Successfully connected to elevator hardware at {0}:{1}", simulator_host, simulator_port);
 		act_connectToSimulator()
+		reportConnection("nice!")
 	}
 
 	// setup model of simulation (once?)
