@@ -165,7 +165,7 @@ event FloorRequestPercept extends CarAtFloorPercept {
 }
 
 /** 
- * A floor being requested by a person in a car
+ * The elevator simulation has ended
  * @author Sebastian Sardina
  */
 event SimulationEnd extends ElevatorSimPercept {
