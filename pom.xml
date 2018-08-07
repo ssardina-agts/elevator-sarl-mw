@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bitbucket.ssardina-research</groupId>
 	<artifactId>sarl-elevatorsim-mw</artifactId>
-	<version>1.1.${env.SARL_VERSION}</version>
+	<version>1.2.${env.SARL_VERSION}</version>
 
  	<name>SARL Middleware for Java-based Elevator Simulator</name>
   	<description>SARL Capacities and Skills to interact with the Elevator Simulator</description>
@@ -32,59 +32,6 @@
         <compiler.level>1.8</compiler.level>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
- 
-  
-        	
-    <build>
-	  <resources>
-	       <resource>
-	            <directory>src/main/sarl</directory>
-	            <filtering>false</filtering>
-	        </resource>
-	        <resource>
-	            <directory>src/main/java</directory>
-	            <filtering>false</filtering>
-	        </resource>
-	  </resources>
-      <plugins>
-            <plugin>
-                <groupId>io.sarl.maven</groupId>
-                <artifactId>sarl-maven-plugin</artifactId>
-                <version>${sarl.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <source>${compiler.level}</source>
-                    <target>${compiler.level}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-            
- 		    <plugin>
-			    <artifactId>maven-assembly-plugin</artifactId>
-			    <configuration>
-			        <archive>
-			            <manifest>
-			                <addClasspath>true</addClasspath>
-			                <!-- <mainClass>io.janusproject.Boot</mainClass> -->
-			                <mainClass>au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers.BootMAS</mainClass>
-			            </manifest>
-			        </archive>
-			        <descriptorRefs>
-			            <descriptorRef>jar-with-dependencies</descriptorRef>
-			        </descriptorRefs>
-			    </configuration>
-			    <executions>
-			        <execution>
-			            <id>make-my-jar-with-dependencies</id>
-			            <phase>package</phase>
-			            <goals>
-			                <goal>single</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-			    </plugin>
-       </plugins>
-    </build>
 
     <dependencies>
         <dependency>
@@ -116,5 +63,75 @@
 	    </snapshots>
 	  </pluginRepository>
 	</pluginRepositories>
+ 
+  
+	<!-- BUILD RULES -->        	
+    <build>
+	  <resources>
+	       <resource>
+	            <directory>src/main/sarl</directory>
+	            <filtering>false</filtering>
+	        </resource>
+	        <resource>
+	            <directory>src/main/java</directory>
+	            <filtering>false</filtering>
+	        </resource>
+	  </resources>
+      <plugins>
+           <!--  Use SARL framework to compile -->
+            <plugin>
+                <groupId>io.sarl.maven</groupId>
+                <artifactId>sarl-maven-plugin</artifactId>
+                <version>${sarl.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <source>${compiler.level}</source>
+                    <target>${compiler.level}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            
+           <!--  Attach sources -->
+	       <plugin>
+	              <groupId>org.apache.maven.plugins</groupId>
+	              <artifactId>maven-source-plugin</artifactId>
+	              <executions>
+	                    <execution>
+	                          <id>attach-sources</id>
+	                           <goals>
+	                               <goal>jar</goal>
+	                           </goals>
+	                    </execution>
+	              </executions>
+	       </plugin>
+
+           <!--  Assemble a JAR file with BootMAS as main class -->
+ 		    <plugin>
+			    <artifactId>maven-assembly-plugin</artifactId>
+			    <configuration>
+			        <archive>
+			            <manifest>
+			                <addClasspath>true</addClasspath>
+			                <!-- <mainClass>io.janusproject.Boot</mainClass> -->
+			                <mainClass>au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers.BootMAS</mainClass>
+			            </manifest>
+			        </archive>
+			        <descriptorRefs>
+			            <descriptorRef>jar-with-dependencies</descriptorRef>
+			        </descriptorRefs>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <id>make-my-jar-with-dependencies</id>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>single</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			    </plugin>
+       </plugins>
+    </build>
+
 
 </project>
