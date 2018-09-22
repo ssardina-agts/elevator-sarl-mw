@@ -9,6 +9,8 @@ The middleware provides the core basic skills of a SARL agent to control an elev
 This project was part of a team-based programming project course under the supervision of A/Prof. Sebastian Sardina (see below for contacts). 
 The largest part of that project involved extending the Java-based elevator simulator and can be found [here](https://bitbucket.org/ssardina-research/elevator-sim).
 
+This framework can be accessible via JitPack at https://jitpack.io/#org.bitbucket.ssardina-research/sarl-elevatorsim-mw by adding the corresponding dependency and repository on the pom.xml.
+
 **Version convention**: `Major.Minor.<SARL Version>`. For example, 1.3.0.7.2 is version 1.3 for SARL 0.7.2.
 
 ## PRE-REQUISITES 
