@@ -99,23 +99,23 @@ In addition a set of events are defined signaling events in the elevator simulat
 
 Implements **Cap_Reporting** capacity by printing in console. Formatting is allowed, such as the following action to report a message:
  
-		```
-		#!java
+```
+#!java
 
 		reportMessage("Successfully connected to elevator hardware at {1}:{2}", simulator_host, simulator_port);
-		```
+```
 
 or the following to report arriving to a floor:
 
-		```
-		#!java
+```
+#!java
 
 		on CarArrivedPercept {
 			reportArrivedAt(occurrence.car, occurrence.floor)
 			currentFloor = occurrence.floor
 			moving = false
 		}
-		```
+```
 
 
 
