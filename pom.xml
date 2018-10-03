@@ -2,8 +2,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bitbucket.ssardina-research</groupId>
 	<artifactId>sarl-elevatorsim-mw</artifactId>
-	<version>1.2.${env.SARL_VERSION}</version>
+	<version>2.0.${env.SARL_VERSION}</version>
 
+    <!-- ##################################################################
+		PROJECT INFO 
+     ####################################################################### -->
  	<name>SARL Middleware for Java-based Elevator Simulator</name>
   	<description>SARL Capacities and Skills to interact with the Elevator Simulator</description>
   	<url>https://bitbucket.org/ssardina-research/sarl-elevatorsim-mw</url>
@@ -25,6 +28,9 @@
   	</developers>
 
 
+    <!-- ##################################################################
+		 PROPERTIES 
+     ####################################################################### -->
     <properties>
         <janus.version>2.${env.SARL_VERSION}</janus.version>
         <sarl.version>${env.SARL_VERSION}</sarl.version>
@@ -33,6 +39,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+    <!-- ##################################################################
+		DEPENDENCIES 
+     ####################################################################### -->
     <dependencies>
         <dependency>
             <groupId>io.janusproject</groupId>
@@ -44,8 +53,18 @@
             <artifactId>json</artifactId>
             <version>${json.version}</version>
         </dependency>
+        
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>20.0</version>
+		</dependency>
+	    
     </dependencies>
 
+    <!-- ##################################################################
+		REPOSITORIES 
+     ####################################################################### -->
 	<repositories>
 	  <repository>
 	    <id>io.sarl-maven</id>
@@ -65,7 +84,9 @@
 	</pluginRepositories>
  
   
-	<!-- BUILD RULES -->        	
+    <!-- ##################################################################
+		BUILD PIPELINE PLUGINS 
+     ####################################################################### -->
     <build>
 	  <resources>
 	       <resource>

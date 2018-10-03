@@ -18,7 +18,7 @@ The largest part of that project involved extending the Java-based elevator simu
 * [The Elevator Simulator Server (RMIT version)](https://bitbucket.org/sarlrmit/elevator-sim).
 * SARL (SRE JANUS):
      * Environment variable `SARL_VERSION` stating the SARL version to be used (e.g., 0.7.2)
-     * Versions tested: 0.6.1, 0.7.2
+     * Versions tested: 0.6.1, 0.7.2, 0.8.2
      * Obtained with Maven automatically from [SARL Maven Resository](http://mvnrepository.com/artifact/io.sarl.maven).
 * JSON version 20160810
      * To exchanges messages with Elevator Simulator.
