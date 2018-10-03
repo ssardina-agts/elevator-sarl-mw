@@ -9,6 +9,8 @@ The middleware provides the core basic skills of a SARL agent to control an elev
 This project was part of a team-based programming project course under the supervision of A/Prof. Sebastian Sardina (see below for contacts). 
 The largest part of that project involved extending the Java-based elevator simulator and can be found [here](https://bitbucket.org/ssardina-research/elevator-sim).
 
+This framework can be accessible via JitPack at https://jitpack.io/#org.bitbucket.ssardina-research/sarl-elevatorsim-mw by adding the corresponding dependency and repository on the pom.xml.
+
 **Version convention**: `Major.Minor.<SARL Version>`. For example, 1.3.0.7.2 is version 1.3 for SARL 0.7.2.
 
 ## PRE-REQUISITES 
@@ -60,27 +62,21 @@ There are then two ways to install the corresponding JAR file for the middleware
 
 1. Manually get the corresponding JAR file for the middleware for the SARL version you intend to use from the Download section (or produce the JAR yourself by cloning and compiling this repo yourself) and run something like this to install it:
 
-```
-mvn install:install-file -Dfile=sarl-elevatorsim-mw-1.0.0.7.2.jar -DgroupId=org.bitbucket.ssardina-research \
-	-DartifactId=sarl-elevatorsim-mw -Dversion=1.0.0.7.2 -Dpackaging=jar
-```
+		mvn install:install-file -Dfile=sarl-elevatorsim-mw-1.0.0.7.2.jar -DgroupId=org.bitbucket.ssardina-research \
+			-DartifactId=sarl-elevatorsim-mw -Dversion=1.0.0.7.2 -Dpackaging=jar
 
 This will install the middleware infrastructure in your local maven repository and your application will now have access to it. Done!
 
 2. You can specify your application to get it automatically via Maven. To do so, include this repository for the JitPack service:
 
-```
-<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-</repositories>
-```	
+		<repositories>
+				<repository>
+					<id>jitpack.io</id>
+					<url>https://jitpack.io</url>
+				</repository>
+		</repositories>
 
 When you build your application, Maven via JitPack will get middleware from this repo, compile it, package, and install it.
-
-
 
 
 Below we describe the middleware framework (that is, what is provided for you to use in your SARL elevator controller project).
@@ -106,7 +102,7 @@ Implements **Cap_Reporting** capacity by printing in console. Formatting is allo
 ```
 #!java
 
-reportMessage("Successfully connected to elevator hardware at {1}:{2}", simulator_host, simulator_port);
+		reportMessage("Successfully connected to elevator hardware at {1}:{2}", simulator_host, simulator_port);
 ```
 
 or the following to report arriving to a floor:
@@ -114,12 +110,11 @@ or the following to report arriving to a floor:
 ```
 #!java
 
-	on CarArrivedPercept {
-		reportArrivedAt(occurrence.car, occurrence.floor)
-		currentFloor = occurrence.floor
-		moving = false
-	}
-
+		on CarArrivedPercept {
+			reportArrivedAt(occurrence.car, occurrence.floor)
+			currentFloor = occurrence.floor
+			moving = false
+		}
 ```
 
 
