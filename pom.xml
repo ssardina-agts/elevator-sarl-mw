@@ -54,6 +54,7 @@
             <version>${json.version}</version>
         </dependency>
         
+		<!--  TODO: this is needed now for SARL 0.8.2 but it should not.. -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
