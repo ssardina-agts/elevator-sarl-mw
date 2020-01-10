@@ -63,7 +63,7 @@ There are then two ways to install the corresponding JAR file for the middleware
 
 1. Manually get the corresponding JAR file for the middleware for the SARL version you intend to use from the Download section (or produce the JAR yourself by cloning and compiling this repo yourself) and run something like this to install it:
 
-```shell
+```bash
 
 mvn install:install-file -Dfile=sarl-elevatorsim-mw-1.0.0.7.2.jar -Dpackaging=jar \
 	-DgroupId=org.bitbucket.ssardina-research -DartifactId=sarl-elevatorsim-mw -Dversion=1.0.0.7.2 
