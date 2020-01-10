@@ -20,7 +20,7 @@ This framework can be accessible via JitPack at https://jitpack.io/#org.bitbucke
 * [The Elevator Simulator Server (RMIT version)](https://bitbucket.org/sarlrmit/elevator-sim).
 * SARL (SRE JANUS):
      * Environment variable `SARL_VERSION` stating the SARL version to be used (e.g., 0.7.2)
-     * Versions tested: 0.6.1, 0.7.2, 0.8.2
+     * Latest versions tested: 0.8.6
      * Obtained with Maven automatically from [SARL Maven Resository](http://mvnrepository.com/artifact/io.sarl.maven).
 * JSON version 20160810
      * To exchanges messages with Elevator Simulator.
@@ -30,16 +30,15 @@ This framework can be accessible via JitPack at https://jitpack.io/#org.bitbucke
 
 ## DEVELOP THE MIDDLEWARE FURTHER 
 
-In most cases, one would just use the middleware to develop SARL controllers. However, if you want to change the middleware or extend it you need to setup and install it into a SARL development environment.
-Please see Step 2 instructions [here](https://bitbucket.org/snippets/ssardina/6eybMg/sarl-application-general-information-setup) how to do so.
+In most cases, one would just use the middleware to develop SARL controllers. However, if you want to change the middleware or extend it you need to setup and install it into a SARL development environment. Please see Step 2 instructions [here](https://bitbucket.org/snippets/ssardina/6eybMg/sarl-application-general-information-setup) how to do so.
 
-To debug your development you may want to use the simple demo controller **DummyMultiCarController** that continuously makes cars go up and down, without doing anything else.
-This controller is provided mostly for testing the middleware. The demo controller is in package `au.edu.rmit.elevatorsim.sarlmw.controllers`
+To test & debug your development, a simple demo controller **DummyMultiCarController** is provided already in this midleware framework that continuously makes cars go up and down, without doing anything else. The demo controller is in package `au.edu.rmit.elevatorsim.sarlmw.controllers`
 
-Once the middleware is ready, you can compile + install it in your local maven repository (e.g., `~/.m2`) via `mvn clean install`. 
-To just produce the JAR file (to then be used in another SARL Controller project), run `mvn clean package` and the JAR file will be installed under `target/`.
+Compile the MW via Maven first using `mvn clean package` and then run the booting class `BootMAS` via `mvn exec:java` (remember to start the elevator simulator server first).
 
-Remember that maven configuration file `pom.xml` uses environment variable `SARL_VERSION` to extract the SARL version that needs to be used.
+You can compile & install the middleware in your local maven repository (e.g., `~/.m2`) via `mvn clean install`.
+
+Remember that maven configuration file `pom.xml` uses environment variable `SARL_VERSION` to extract the SARL version that needs to be used, so that environment variable has to be defined.
 
 ## USING THE MIDDLEWARE 
 
@@ -53,9 +52,9 @@ First the `pom.xml` of your SARL controller application using the this middlewar
 
 <!--  SARL Elevator Control framework -->
 <dependency>
-    <groupId>org.bitbucket.ssardina-research</groupId>
-    <artifactId>sarl-elevatorsim-mw</artifactId>
-    <version>${sarl-elevatorsim-mw.version}</version>
+    <groupId>com.github.ssardina-agts</groupId>
+    <artifactId>elevator-sarl-mw</artifactId>
+    <version>${elevator-sarl-mw.version}</version>
 </dependency>
 ```
 
@@ -65,8 +64,8 @@ There are then two ways to install the corresponding JAR file for the middleware
 
 ```bash
 
-mvn install:install-file -Dfile=sarl-elevatorsim-mw-1.0.0.7.2.jar -Dpackaging=jar \
-	-DgroupId=org.bitbucket.ssardina-research -DartifactId=sarl-elevatorsim-mw -Dversion=1.0.0.7.2 
+mvn install:install-file -Dfile=elevator-sarl-mw-1.0.0.7.2.jar -Dpackaging=jar \
+	-DgroupId=com.github.ssardina-agts -DartifactId=elevator-sarl-mw -Dversion=1.0.0.7.2 
 ```
 
 This will install the middleware infrastructure in your local maven repository and your application will now have access to it. Done!
