@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.bitbucket.ssardina-research</groupId>
-	<artifactId>sarl-elevatorsim-mw</artifactId>
+	<groupId>com.github.ssardina-agts</groupId>
+	<artifactId>elevator-sarl-mw</artifactId>
 	<version>2.0.${env.SARL_VERSION}</version>
 
     <!-- ##################################################################
@@ -169,5 +169,14 @@
        </plugins>
     </build>
 
+
+	<!--  https://maven.apache.org/plugins/maven-deploy-plugin/usage.html -->
+	<distributionManagement>
+	   <repository>
+	     <id>github</id>
+	     <name>GitHub OWNER Apache Maven Packages</name>
+	     <url>https://maven.pkg.github.com/ssardina-agts/elevator-sarl-mw</url>
+	   </repository>
+	</distributionManagement>
 
 </project>
