@@ -9,7 +9,7 @@
      ####################################################################### -->
  	<name>SARL Middleware for Java-based Elevator Simulator</name>
   	<description>SARL Capacities and Skills to interact with the Elevator Simulator</description>
-  	<url>https://bitbucket.org/ssardina-research/sarl-elevatorsim-mw</url>
+  	<url>https://github.com/ssardina-agts/elevator-sarl-mw</url>
 
     <licenses>
 	    <license>
@@ -22,8 +22,8 @@
     	<developer>
 	      <name>Sebastian Sardina</name>
 	      <email>ssardina@gmail.com</email>
-	      <organization>ssardina-research</organization>
-	      <organizationUrl>https://bitbucket.org/ssardina-research/</organizationUrl>
+	      <organization>ssardina-agts</organization>
+	      <organizationUrl>https://github.com/ssardina-agts</organizationUrl>
 	    </developer>
   	</developers>
 
