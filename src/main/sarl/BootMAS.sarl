@@ -1,8 +1,6 @@
 /** 
  * 
  */
-package au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers
-
 import io.janusproject.Boot
 import au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers.DummyMultiCarController
 

@@ -152,6 +152,20 @@
 			        </execution>
 			    </executions>
 			    </plugin>
+			    
+			    
+  			<!--  Class to execute via maven exec:java 
+			https://www.mojohaus.org/exec-maven-plugin/
+			-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+	                <mainClass>BootMAS</mainClass>
+                </configuration>
+            </plugin>
+			    
+			    
        </plugins>
     </build>
 
