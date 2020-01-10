@@ -49,32 +49,39 @@ To do so, you first need to have the JAR file for the middleware installed in yo
 
 First the `pom.xml` of your SARL controller application using the this middleware should have the following dependency to the middleware:
 
-```
-		<!--  SARL Elevator Control framework -->
-		<dependency>
-		    <groupId>org.bitbucket.ssardina-research</groupId>
-		    <artifactId>sarl-elevatorsim-mw</artifactId>
-	    	    <version>${sarl-elevatorsim-mw.version}</version>
-		</dependency>
+```xml
+
+<!--  SARL Elevator Control framework -->
+<dependency>
+    <groupId>org.bitbucket.ssardina-research</groupId>
+    <artifactId>sarl-elevatorsim-mw</artifactId>
+    <version>${sarl-elevatorsim-mw.version}</version>
+</dependency>
 ```
 
 There are then two ways to install the corresponding JAR file for the middleware:
 
 1. Manually get the corresponding JAR file for the middleware for the SARL version you intend to use from the Download section (or produce the JAR yourself by cloning and compiling this repo yourself) and run something like this to install it:
 
-		mvn install:install-file -Dfile=sarl-elevatorsim-mw-1.0.0.7.2.jar -DgroupId=org.bitbucket.ssardina-research \
-			-DartifactId=sarl-elevatorsim-mw -Dversion=1.0.0.7.2 -Dpackaging=jar
+```shell
+
+mvn install:install-file -Dfile=sarl-elevatorsim-mw-1.0.0.7.2.jar -Dpackaging=jar \
+	-DgroupId=org.bitbucket.ssardina-research -DartifactId=sarl-elevatorsim-mw -Dversion=1.0.0.7.2 
+```
 
 This will install the middleware infrastructure in your local maven repository and your application will now have access to it. Done!
 
 2. You can specify your application to get it automatically via Maven. To do so, include this repository for the JitPack service:
 
-		<repositories>
-				<repository>
-					<id>jitpack.io</id>
-					<url>https://jitpack.io</url>
-				</repository>
-		</repositories>
+```xml
+
+<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+</repositories>
+```
 
 When you build your application, Maven via JitPack will get middleware from this repo, compile it, package, and install it.
 
@@ -99,22 +106,20 @@ In addition a set of events are defined signaling events in the elevator simulat
 
 Implements **Cap_Reporting** capacity by printing in console. Formatting is allowed, such as the following action to report a message:
  
-```
-#!java
+```java
 
-		reportMessage("Successfully connected to elevator hardware at {1}:{2}", simulator_host, simulator_port);
+reportMessage("Successfully connected to elevator hardware at {1}:{2}", simulator_host, simulator_port);
 ```
 
 or the following to report arriving to a floor:
 
-```
-#!java
+```java
 
-		on CarArrivedPercept {
-			reportArrivedAt(occurrence.car, occurrence.floor)
-			currentFloor = occurrence.floor
-			moving = false
-		}
+on CarArrivedPercept {
+	reportArrivedAt(occurrence.car, occurrence.floor)
+	currentFloor = occurrence.floor
+	moving = false
+}
 ```
 
 
@@ -154,42 +159,38 @@ In most cases, users developing SARL controllers will not need to bother with th
 
 Here is the core of the Dummy agent every time a door has been closed in a given car:
 
-```
-#!java
+```java
 
-	on DoorClosedPercept {
-		var next_floor : int = -1
-		var next_dir : Direction
+on DoorClosedPercept {
+	var next_floor : int = -1
+	var next_dir : Direction
 
-		if (currentFloor == highestFloor) {
-			next_floor = lowestFloor
-			next_dir = Direction.UP
-		} else if (currentFloor == lowestFloor) {
-			next_floor = highestFloor
-			next_dir = Direction.DOWN
-		}
-		
-		if (next_floor > -1) {
-                        // this is the actual MOVEMENT action!
-			sendCar(new SendCarAction(occurrence.car, next_floor, next_dir)) 
-			reportTravellingTo(occurrence.car, next_floor, next_dir)
-			moving = true
-		} 
-		
+	if (currentFloor == highestFloor) {
+		next_floor = lowestFloor
+		next_dir = Direction.UP
+	} else if (currentFloor == lowestFloor) {
+		next_floor = highestFloor
+		next_dir = Direction.DOWN
 	}
 
+	if (next_floor > -1) {
+		// this is the actual MOVEMENT action!
+		sendCar(new SendCarAction(occurrence.car, next_floor, next_dir)) 
+		reportTravellingTo(occurrence.car, next_floor, next_dir)
+		moving = true
+	} 
+
+}
 ```
 		
 To establish the connection, the agents adopts the skill and then issue the connection action:
 
 
-```
-#!java
+```java
 
 setSkill(new Skill_SingleSimulatorInteraction(simulator_host, simulator_port, defaultSpace), Cap_SimulatorInteraction)
 act_connectToSimulator()
 reportMessage("Successfully connected to elevator hardware at {1}:{2}", simulator_host, simulator_port);
-
 ```
 
 #### Skill_MultipleSimulatorInteraction 
@@ -200,12 +201,10 @@ For example, in a multi-agent SAR application, each agent can register to contro
 
 Each agent should then connect as follows:
 
-```
-#!java
+```java
 
 setSkill(new Skill_MultipleSimulatorInteraction(simulator_host, simulator_port, #[carID], defaultSpace), Cap_SimulatorInteraction)
 act_connectToSimulator()
-
 ```
 
 The third argument is a list of car ids that the agent is allowed to control (in this case, just one). When a **sendCar** action is issued by an agent, it is only allowed (and corresponding message sent to simulator) if agent is controlling the corresponding car.
@@ -217,22 +216,26 @@ The third argument is a list of car ids that the agent is allowed to control (in
 
 The following self-explanatory events signal something that happened in the simulation:
 
-	import au.edu.rmit.elevatorsim.sarlmw.events.CarArrivedPercept
-	import au.edu.rmit.elevatorsim.sarlmw.events.CarPassedFloorPercept
-	import au.edu.rmit.elevatorsim.sarlmw.events.CarRequestPercept
-	import au.edu.rmit.elevatorsim.sarlmw.events.DoorClosedPercept
-	import au.edu.rmit.elevatorsim.sarlmw.events.DoorOpenedPercept
-	import au.edu.rmit.elevatorsim.sarlmw.events.DoorSensorClearedPercept
-	import au.edu.rmit.elevatorsim.sarlmw.events.FloorRequestPercept
-	import au.edu.rmit.elevatorsim.sarlmw.events.ModelChangePercept
-	import au.edu.rmit.elevatorsim.sarlmw.events.PersonEnteredPercept
-	import au.edu.rmit.elevatorsim.sarlmw.events.PersonExitedPercept
+```java
 
+import au.edu.rmit.elevatorsim.sarlmw.events.CarArrivedPercept
+import au.edu.rmit.elevatorsim.sarlmw.events.CarPassedFloorPercept
+import au.edu.rmit.elevatorsim.sarlmw.events.CarRequestPercept
+import au.edu.rmit.elevatorsim.sarlmw.events.DoorClosedPercept
+import au.edu.rmit.elevatorsim.sarlmw.events.DoorOpenedPercept
+import au.edu.rmit.elevatorsim.sarlmw.events.DoorSensorClearedPercept
+import au.edu.rmit.elevatorsim.sarlmw.events.FloorRequestPercept
+import au.edu.rmit.elevatorsim.sarlmw.events.ModelChangePercept
+import au.edu.rmit.elevatorsim.sarlmw.events.PersonEnteredPercept
+import au.edu.rmit.elevatorsim.sarlmw.events.PersonExitedPercept
+```
 
 There is also an event corresponding to the send car action:
 
-	import au.edu.rmit.elevatorsim.sarlmw.events.SendCarAction
+```java
 
+import au.edu.rmit.elevatorsim.sarlmw.events.SendCarAction
+```
 
 
 
