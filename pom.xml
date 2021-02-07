@@ -32,7 +32,7 @@
 		 PROPERTIES 
      ####################################################################### -->
     <properties>
-        <janus.version>2.${env.SARL_VERSION}</janus.version>
+        <janus.version>3.${env.SARL_VERSION}</janus.version>
         <sarl.version>${env.SARL_VERSION}</sarl.version>
         <json.version>20160810</json.version>
         <compiler.level>1.8</compiler.level>
@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>20.0</version>
+			<version>27.1-jre</version>
 		</dependency>
 	    
     </dependencies>

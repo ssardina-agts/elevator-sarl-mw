@@ -1,15 +1,12 @@
-# SARL Elevator Simulator Middleware (for Java-based Elevator Simulator) 
+# SARL Middleware for Java-based Elevator Simulator 
 
-This project provides the basic middleware infrastructure, through a capacity/skill, to develop agent-based controllers for the [Java Elevator Simulator (RMIT Version)](https://bitbucket.org/sarlrmit/elevator-sim) in the [SARL Language](https://github.com/sarl/sarl) agent framework. 
-The project also a includes a basic demo SARL elevator agent-based controllers taht uses the middlware infrastructure. 
+This project provides the basic middleware infrastructure, through a capacity/skill, to develop agent-based controllers for the [Java Elevator Simulator (RMIT Version)](https://bitbucket.org/sarlrmit/elevator-sim) in the [SARL Language](http://www.sarl.io/) agent programming framework. The project also a includes a basic demo SARL elevator agent-based controllers that uses the middleware infrastructure (mostly for testing purposes).
 
-The SARL Middleware infrastructure provided in this project can be used "off-the-shelf" to develop complex SARL-based controllers for the elevator simulator. 
-The middleware provides the core basic skills of a SARL agent to control an elevator simulator, by receiving sensor-events and issuing command-events to the simulator.  
+The SARL Middleware (MW) infrastructure can be used "off-the-shelf" to develop complex SARL-based controllers for the elevator simulator. The MW provides the core basic _skills_ for a SARL agent to control the set of elevators in the simulator, by receiving sensor-events and issuing command-events to the simulator.
 
-This project was part of a team-based programming project course under the supervision of A/Prof. Sebastian Sardina (see below for contacts). 
-The largest part of that project involved extending the Java-based elevator simulator and can be found [here](https://bitbucket.org/ssardina-research/elevator-sim).
+This project was part of a team-based programming project course under the supervision of A/Prof. Sebastian Sardina (see below for contacts). The main part of such project, however, involved extending the Java-based elevator simulator from [here](https://github.com/ssardina-agts/elevator-simulator/).
 
-This framework can be accessible via JitPack at https://jitpack.io/#org.bitbucket.ssardina-research/sarl-elevatorsim-mw by adding the corresponding dependency and repository on the pom.xml.
+This framework can be accessible via JitPack at https://jitpack.io/#org.bitbucket.ssardina-research/sarl-elevatorsim-mw by adding the corresponding dependency and repository on the `pom.xml`.
 
 **Version convention**: `Major.Minor.<SARL Version>`. For example, 1.3.0.7.2 is version 1.3 for SARL 0.7.2.
 
@@ -104,7 +101,7 @@ In addition a set of events are defined signaling events in the elevator simulat
 #### Skill_ConsoleReporting 
 
 Implements **Cap_Reporting** capacity by printing in console. Formatting is allowed, such as the following action to report a message:
- 
+
 ```java
 
 reportMessage("Successfully connected to elevator hardware at {1}:{2}", simulator_host, simulator_port);
@@ -181,7 +178,7 @@ on DoorClosedPercept {
 
 }
 ```
-		
+
 To establish the connection, the agents adopts the skill and then issue the connection action:
 
 
