@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.ssardina-agts</groupId>
 	<artifactId>elevator-sarl-mw</artifactId>
-	<version>2.0.${env.SARL_VERSION}</version>
+	<version>2.0.${sarl.version}</version>
 
     <!-- ##################################################################
 		PROJECT INFO 
@@ -32,9 +32,15 @@
 		 PROPERTIES 
      ####################################################################### -->
     <properties>
-        <janus.version>3.${env.SARL_VERSION}</janus.version>
-        <sarl.version>${env.SARL_VERSION}</sarl.version>
+        <!-- SARL framework version and configuration -->
+        <!--  This is the main property - change this when upgrading SARL -->
+        <sarl.version>0.11.0</sarl.version>
+        <janus.version>3.${sarl.version}</janus.version>
+
+		<!--  JSON library to communicate with the simulator server -->
         <json.version>20160810</json.version>
+
+        <!-- JAVA compiler version to be used -->
         <compiler.level>1.8</compiler.level>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -43,11 +49,14 @@
 		DEPENDENCIES 
      ####################################################################### -->
     <dependencies>
+        <!-- JANUS/SRE Project kernel (contains SARL language core) -->
         <dependency>
             <groupId>io.janusproject</groupId>
             <artifactId>io.janusproject.kernel</artifactId>
             <version>${janus.version}</version>
         </dependency>
+
+        <!--  JSON framework -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -113,10 +122,13 @@
                 </configuration>
             </plugin>
             
-           <!--  Attach sources -->
+           <!--  Attach sources 
+           http://maven.apache.org/plugins/maven-source-plugin/
+           -->
 	       <plugin>
 	              <groupId>org.apache.maven.plugins</groupId>
 	              <artifactId>maven-source-plugin</artifactId>
+                  <version>3.2.0</version>
 	              <executions>
 	                    <execution>
 	                          <id>attach-sources</id>
@@ -160,6 +172,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
                 <configuration>
 	                <mainClass>BootMAS</mainClass>
                 </configuration>

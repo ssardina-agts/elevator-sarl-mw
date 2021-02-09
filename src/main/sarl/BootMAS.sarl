@@ -1,5 +1,7 @@
-import io.sarl.sre.boot.Boot;
+import io.sarl.bootstrap.SRE
+
 import au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers.DummyMultiCarController
+
 
 
 /** 
@@ -11,15 +13,16 @@ class BootMAS {
 		// From old Janus SRE 2
 //		Boot.offline = true
 //		Boot.verboseLevel = 7 //ALL
+		var sre = SRE::bootstrap
 		
 		if (args.length == 0)
-			Boot.createMainObject.startAgent(typeof(DummyMultiCarController))		
+			sre.startAgent(typeof(DummyMultiCarController))
 		else {
 			val name : String = args.get(0)
 			val c = Class.forName(name)
 
 			System.out.println("Loading SARL controller  agent " + name)
-			Boot.createMainObject.startAgent(typeof(DummyMultiCarController))		
+			sre.startAgent(typeof(DummyMultiCarController))
 		}
 	}
 }
