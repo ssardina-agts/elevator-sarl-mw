@@ -10,10 +10,9 @@ import au.edu.rmit.agtgrp.elevatorsim.sarlmw.controllers.DummyMultiCarController
  */
 class BootMAS {
 	def static main(args : String[]) : void {
-		// From old Janus SRE 2
-//		Boot.offline = true
-//		Boot.verboseLevel = 7 //ALL
 		var sre = SRE::bootstrap
+		sre.verboseLevel = 7
+		
 		
 		if (args.length == 0)
 			sre.startAgent(typeof(DummyMultiCarController))
