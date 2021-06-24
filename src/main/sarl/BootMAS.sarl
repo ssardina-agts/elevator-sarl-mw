@@ -12,6 +12,7 @@ class BootMAS {
 	def static main(args : String[]) : void {
 		var sre = SRE::bootstrap
 		sre.verboseLevel = 7
+		// bootstrap.setVerboseLevel(7)
 		
 		
 		if (args.length == 0)

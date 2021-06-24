@@ -8,7 +8,7 @@ This project was part of a team-based programming project course under the super
 
 This framework can be [accessible via JitPack](https://jitpack.io/#com.github.ssardina-agts/sarl-elevatorsim-mw) by adding the corresponding dependency and repository on the `pom.xml` (see below). 
 
-**Version convention**: `Major.Minor.<SARL Version>`. For example, 1.3.0.7.2 is version 1.3 for SARL 0.7.2.
+[Semantic versioning](https://semver.org/) is used with versions of the form `Major.Minor.Patch`. Each version will rely on a particular SARL version, which is indicated via `<sarl.version>` property in the POM file.
 
 ## PRE-REQUISITES
 
